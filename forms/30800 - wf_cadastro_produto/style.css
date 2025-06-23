@@ -1,0 +1,483 @@
+/* Variáveis */
+:root {
+  --font-size-default: 12px !important;
+  --font-size-small: 11px !important;
+  --font-size-large: 13px !important;
+  --border-default: 1px solid #046a38 !important;
+  --border-strong: 2px solid #046a38 !important;
+  --bg-color-default: #e1f4e1 !important;
+  --bg-color-white: #fff !important;
+  --text-color-main: #35729d !important;
+  --text-color-sub: #58595b !important;
+  --bg-color-custom: #046a38 !important;
+  --color-dg: #cc3d3d !important;
+  --color-coral: #f44 !important;
+  --color-cerise: #ed145b !important;
+  --color-orange: #f37022 !important;
+  --color-yellow: #faa619 !important;
+  --color-wn: #e3b420 !important;
+  --color-sc: #1ab83f !important;
+  --color-green: #a6cf38 !important;
+  --color-aqua: #14ccb9 !important;
+  --color-if: #1eaad9 !important;
+  --color-blue: #009bdd !important;
+  --color-ocean: #045b8f !important;
+  --color-purple: #9b4088 !important;
+  --color-gray-dk: #58595b !important;
+  --color-gray: #8c8d8f !important;
+  --color-gray-md: #afb0b3 !important;
+  --color-gray-lt: #d2d3d6 !important;
+  --color-gray-ult: #e8e9eb !important;
+}
+
+/*Padroniza o tamanho da font, margin e padding de toda a página*/
+.panel-body {
+  font-size: 12px;
+}
+
+/*Cria a classe responsável pelo simbolo "*" de obrigátório. 
+(para usar é só adicionar a classe "required" na label.)*/
+.required::after {
+  content: ' *';
+  color: red;
+  font-weight: bolder;
+}
+
+/*Classes Responsáveis pelo visual do Header Padrão Xplanning*/
+.titulo {
+  margin-top: 10px;
+  padding: 8px 15px;
+  list-style: none;
+  border-radius: 4px;
+  font-weight: bold;
+  border-bottom: solid #000352;
+}
+
+select[readonly] {
+  background: #eee;
+  pointer-events: none;
+  touch-action: none;
+}
+
+.radio {
+  margin-top: 0 !important;
+}
+
+.header-xplanning {
+  background-color: #fff !important;
+  padding: 10px;
+  border: 1px solid #046a38 !important;
+}
+
+.titleSolicitante {
+  font-size: 0.9rem !important;
+  font-weight: bold !important;
+  background-color: #ffff !important;
+  border: none !important;
+  box-shadow: none !important;
+  height: 32px !important;
+  color: #58595b !important;
+  padding-left: 7px !important;
+}
+
+.customSolicitante {
+  font-size: 11px !important;
+  background-color: #ffff !important;
+  border: none !important;
+  box-shadow: none !important;
+  height: 14px !important;
+  color: #58595b !important;
+  width: 90% !important;
+}
+
+.invisibleField {
+  background-color: #ffff !important;
+  border: none !important;
+  box-shadow: none !important;
+  color: #58595b !important;
+}
+
+.row {
+  margin-right: 0px !important;
+  margin-left: 0px !important;
+  padding-left: 0px !important;
+  padding-right: 0px !important;
+}
+
+.avatar {
+  width: 100%;
+  height: 100%;
+  max-width: 70px;
+  max-height: 70px;
+  background-size: cover;
+  background-position: top center;
+  border-radius: 50%;
+  border: 1px solid #eee !important;
+}
+
+/*Classes Responsáveis pelo visual do Painel Padrão Xplanning*/
+.customPanel {
+  border-color: #046a38 !important;
+  font-size: 12px;
+}
+
+.titulo-panel {
+  background-color: #e1f4e1 !important;
+  border-bottom: #046a38 !important;
+  border-style: solid !important;
+  border-top: none !important;
+  border-left: none !important;
+  border-right: none !important;
+  border-width: 0.5 !important;
+}
+
+.labelPanelTitle {
+  font-weight: bold !important;
+  font-size: 13px !important;
+  color: #045c31 !important;
+}
+
+.titulo span {
+  color: red;
+}
+
+.div-table {
+  padding-right: 0px;
+  padding-left: 0px;
+}
+
+/* .fluig-style-guide form .row table thead {
+  display: none;
+} */
+
+.td-lixeira {
+  width: 1.33333333%;
+}
+
+.div-col-anexo {
+  padding-right: 0px;
+}
+
+.div-col-buttons {
+  padding-left: 7px;
+}
+
+.div-group-buttons {
+  margin-top: 35px;
+}
+
+/*Classes Responsáveis pelo visual da Linha do Tempo Padrão Xplanning*/
+.breadcrumbs-xp {
+  background-color: #e1f4e1;
+  border: 1px solid #046a38;
+  color: #35729d;
+  font-weight: bold;
+  display: flex;
+  font-size: 13px;
+  position: relative;
+  height: 55px;
+}
+
+.breadcrumb-item-xp {
+  padding-left: 30px;
+}
+
+.breadcrumb-item-xp:first-child {
+  padding-left: 10px;
+}
+
+.breadcrumb-item-xp .number-bread {
+  display: block;
+  background-color: #046a38;
+  width: 8px;
+  height: 16px;
+  border-radius: 15px;
+  padding: 12px 12px;
+  float: left;
+  margin: 16px 0 0 10px;
+  color: #fff;
+}
+
+.breadcrumb-item-xp .label-bread {
+  display: block;
+  padding: 20px 0 20px 10px;
+  float: left;
+}
+
+.breadcrumb-item-xp::after {
+  content: '';
+  display: block;
+  width: 35px;
+  height: 35px;
+  transform: rotate(130deg) skew(-10deg);
+  float: right;
+  position: relative;
+  top: 9px;
+  left: 18px;
+  border-top: 1px solid #046a38;
+  border-left: 1px solid #046a38;
+  background-color: #e1f4e1;
+}
+
+.breadcrumb-item-xp.current,
+.breadcrumb-item-xp.current::after {
+  background-color: #046a38;
+  color: #fff;
+}
+
+.breadcrumb-item-xp.current .number-bread {
+  background-color: #e1f4e1;
+  color: #046a38;
+}
+
+@media only screen and (max-width: 715px) {
+  .breadcrumbs-xp {
+    flex-direction: column;
+    height: auto;
+    align-items: center;
+    margin: 0px;
+    padding: 0px;
+  }
+
+  .breadcrumb-item-xp {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+    padding: 0px;
+  }
+
+  .breadcrumb-item-xp:first-child {
+    margin: 0px;
+    padding: 0px;
+    border-bottom: solid 1px #046a38;
+  }
+
+  .breadcrumb-item-xp .number-bread {
+    margin: 0px;
+    padding: 0px;
+  }
+
+  .breadcrumb-item-xp .label-bread {
+    position: relative;
+    top: 4px;
+    margin: 0px;
+    padding: 0px;
+  }
+
+  .breadcrumb-item-xp::after {
+    top: 10px;
+    left: 137px;
+    width: 20px;
+    height: 20px;
+    margin-top: -10px;
+    transform: rotate(220deg) skew(-10deg);
+  }
+}
+
+.linhaProcuracao {
+  display: flex;
+  align-items: center;
+}
+
+/*Classes responsáveis pelo visual dos campos do tipo anexo*/
+.componentAnexo {
+  display: flex !important;
+}
+
+.componentAnexo .input-group {
+  flex-grow: 1;
+  position: relative;
+}
+
+.componentAnexo .inputAnexo {
+  color: blue !important;
+  border-radius: 3 !important;
+}
+
+.componentAnexo .icones .btn-default,
+.componentAnexo .icones .btn-default:focus,
+.componentAnexo .icones .btn-default:active,
+.componentAnexo .icones .btn-default:hover {
+  border: solid 1px #58595b !important;
+}
+
+.componentAnexo .icones .btn-primary,
+.componentAnexo .icones .btn-primary:focus,
+.componentAnexo .icones .btn-primary:active,
+.componentAnexo .icones .btn-primary:hover {
+  border: solid 1px #58595b !important;
+}
+
+.componentAnexo .icones .btn-success,
+.componentAnexo .icones .btn-success:focus,
+.componentAnexo .icones .btn-success:active,
+.componentAnexo .icones .btn-success:hover {
+  border: solid 1px #1ab83f !important;
+}
+
+.componentAnexo .icones .btn-info,
+.componentAnexo .icones .btn-info:focus,
+.componentAnexo .icones .btn-info:active,
+.componentAnexo .icones .btn-info:hover {
+  border: solid 1px #1eaad9 !important;
+}
+
+.componentAnexo .icones .btn-warning,
+.componentAnexo .icones .btn-warning:focus,
+.componentAnexo .icones .btn-warning:active,
+.componentAnexo .icones .btn-warning:hover {
+  border: solid 1px #e3b420 !important;
+}
+
+.componentAnexo .icones .btn-danger,
+.componentAnexo .icones .btn-danger:focus,
+.componentAnexo .icones .btn-danger:active,
+.componentAnexo .icones .btn-danger:hover {
+  border: solid 1px #cc3d3d !important;
+}
+
+.input-hidden {
+  height: 33px !important;
+  width: 41px !important;
+  position: absolute !important;
+  top: -8px !important;
+  left: -14px !important;
+  border-radius: 3px !important;
+}
+
+.custom-nav-tabs > li > a {
+  border: solid 1px #046a38 !important;
+  border-bottom: none !important;
+  font-weight: bold !important;
+  color: #35729d !important;
+  background-color: #e1f4e1 !important;
+}
+
+.custom-nav-tabs > li > a:hover {
+  background-color: #046a38 !important;
+  color: #fff !important;
+}
+
+.custom-nav-tabs > li.active > a {
+  background-color: #046a38 !important;
+  color: #fff !important;
+}
+
+.custom-tab-content {
+  border: solid 2px #046a38 !important;
+}
+
+#dynamicContents {
+  margin: 0 !important;
+  padding: 0 !important;
+  border: solid 1px #046a38 !important;
+}
+
+.painelTabs {
+  margin: 0 !important;
+  padding: 0 !important;
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: flex-end !important;
+  position: relative !important;
+  top: 1px !important;
+}
+
+input[type='date']::-webkit-calendar-picker-indicator {
+  display: none;
+}
+
+.select2-container--default.select2-container--disabled .select2-selection--multiple {
+  background-color: #f2f2f2 !important;
+  cursor: not-allowed !important;
+}
+
+.fluig-style-guide .checkbox,
+.fluig-style-guide .radio {
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+input[type='number'] {
+  /* Remove as setas de input para navegadores WebKit (Chrome, Safari, etc.) */
+  -webkit-appearance: none;
+  -moz-appearance: textfield;
+  appearance: textfield;
+
+  /* Remove as setas de input para navegadores baseados no WebKit */
+  &::-webkit-inner-spin-button,
+  &::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+}
+
+/* .steps {
+	border: 1px solid #046A38 !important;
+	padding-top: 10px !important;
+	padding-bottom: 10px !important;
+	background-color: #E1F4E1 !important;
+}
+
+.step-item .step-bullet {
+	color: #046A38 !important;
+}
+
+.step-label {
+	text-align: center !important;
+	color: #046A38 !important;
+}
+
+.done{
+	color: #046A38 !important;
+}
+
+.active{
+	color: white;
+} */
+
+/* STATUS CONCLUÍDO */
+.fluig-style-guide .steps > .step-item.done > .step-bullet::after {
+  background-color: #046a38;
+}
+
+.fluig-style-guide .steps > .step-item.done::before {
+  background-color: #046a38;
+}
+
+/* STATUS ATIVO */
+.fluig-style-guide .steps > .step-item.active > .step-bullet::after {
+  background-color: #046a38;
+}
+
+.fluig-style-guide .steps > .step-item.active > .step-label {
+  color: #046a38;
+}
+
+.swal2-title {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.swal2-html-container {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.btn-delete {
+  background-color: #e74c3c;
+  color: white;
+}
+
+.btn-delete:hover {
+  background-color: #c0392b;
+}
+
+.swiper-container {
+  max-height: 550px;
+  overflow: hidden;
+}
+
+.swiper-slide img {
+  max-width: 100%;
+  height: auto;
+}

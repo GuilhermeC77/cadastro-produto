@@ -1,0 +1,2785 @@
+<html>
+
+<head>
+	<!-- =================================================================================================== -->
+	<!-- CSS Libraries -->
+	<link type="text/css" rel="stylesheet" href="/style-guide/css/fluig-style-guide.min.css" />
+	<link type="text/css" rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+	<!-- =================================================================================================== -->
+	<!-- JS Libraries -->
+	<script type="text/javascript" src="/portal/resources/js/jquery/jquery.js"></script>
+	<script type="text/javascript" src="/portal/resources/js/jquery/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="/portal/resources/js/mustache/mustache-min.js"></script>
+	<script type="text/javascript" src="/style-guide/js/fluig-style-guide.min.js" charset="utf-8"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-maskmoney/3.0.2/jquery.maskMoney.min.js"></script>
+	<!-- =================================================================================================== -->
+	<!-- Fluig Components -->
+	<script src="/webdesk/vcXMLRPC.js"></script>
+	<!-- =================================================================================================== -->
+	<!-- Custom JS -->
+	<script type="text/javascript" src="document.js" charset="utf-8"></script>
+	<script type="text/javascript" src="script.js" charset="utf-8"></script>
+	<script type="text/javascript" src="activities.js" charset="utf-8"></script>
+	<script type="text/javascript" src="utils.js" charset="utf-8"></script>
+	<script type="text/javascript" src="zoom.js" charset="utf-8"></script>
+	<script type="text/javascript" src="validate.js" charset="utf-8"></script>
+	<!-- =================================================================================================== -->
+	<!-- Custom CSS -->
+	<link type="text/css" rel="stylesheet" href="style.css" />
+	<!-- =================================================================================================== -->
+	<!-- External Libraries -->
+	<script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+	<!-- =================================================================================================== -->
+	<!-- FONT AWESOME -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+	<!-- =================================================================================================== -->
+	<!-- SWIPER -->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+	<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+</head>
+
+<body>
+	<div class="fluig-style-guide">
+		<form name="form" role="form">
+			<button class="btn btn btn-success" id="btnRetornarInicio" style="border-radius: 50px; display: none; position: fixed; bottom: 100px; right: 20px; z-index: 1000;">
+				<h5>Início</h5><i class="flaticon flaticon-arrow-up icon-lg" aria-hidden="true"></i>
+			</button>
+			<input type="hidden" id="matriculaSolicitante" name="matriculaSolicitante" value="" />
+			<input type="hidden" id="validaEdicao" name="validaEdicao"/>
+			<!-- =================================================================================================== -->
+			<!-- [Inicio] Cabeçalho padrão Xplanning -->
+			<div class="page-header header-xplanning">
+				<div class="row">
+					<div class="col-md-3 col-xs-12" style="top: -3px; text-align: center">
+						<img src="vidara_logo.png" height="65" style="padding: 10px; max-width: 250px;" alt="logo"></img>
+					</div>
+					<!-- Título do Processo-->
+					<div class="col-md-6 col-xs-12" style="text-align: center">
+						<h3>Solicitação Cadastro de Produto</h3>
+					</div>
+					<div class="col-md-3 col-xs-12" style="padding: 0px; padding-right: 15px">
+						<div class="col-md-9 col-xs-10">
+							<div class="row" style="margin-top: -10px">
+								<input type="text" class="form-control titleSolicitante" id="nomeSolicitante" name="nomeSolicitante" readonly />
+							</div>
+							<div class="row" style="margin-top: -5px">
+								<i class="fluigicon fluigicon-brand fluigicon-xs" title="Nº Solicitação"></i>
+								<input type="text" class="customSolicitante" name="numeroSolicitacao" id="numeroSolicitacao" value="Nº Solicitação" readonly />
+							</div>
+							<div class="row" style="margin-top: -5px">
+								<i class="fluigicon fluigicon-calendar fluigicon-xs" title="Data da Solicitação"></i>
+								<input type="text" class="customSolicitante" id="dataSolicitacao" name="dataSolicitacao" readonly />
+							</div>
+							<div class="row" style="margin-top: -5px">
+								<i class="fluigicon fluigicon-envelope fluigicon-xs"></i>
+								<input type="text" class="customSolicitante" id="emailSolicitante" name="emailSolicitante" readonly />
+							</div>
+						</div>
+						<div class="col-md-3 col-xs-2" style="text-align: center; margin-top: -5px; padding: 0px">
+							<img id="imgSolicitante" class="avatar" src="" title="Solicitante">
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- =================================================================================================== -->
+			<!-- Steps -->
+			<ul class="steps">
+				<li id="stepInicio" class="step-item" data-toggle="tooltip" data-placement="bottom" title="Clique para ir ao painel desejado">
+					<span class="step-bullet"></span>
+					<span class="step-label">Inicio</span>
+				</li>
+				<li style="display: none;" id="stepRevisao" class="step-item">
+					<span class="step-bullet"></span>
+					<span class="step-label">Revisão</span>
+				</li>
+				<li id="stepCompras" class="step-item" data-toggle="tooltip" data-placement="bottom" title="Clique para ir ao painel desejado">
+					<span class="step-bullet"></span>
+					<span class="step-label">Análise<br>Compras</span>
+				</li>
+				<li id="stepComercial" class="step-item" data-toggle="tooltip" data-placement="bottom" title="Clique para ir ao painel desejado">
+					<span class="step-bullet"></span>
+					<span class="step-label">Análise<br>Comercial</span>
+				</li>
+				<li id="stepTecnico" class="step-item" data-toggle="tooltip" data-placement="bottom" title="Clique para ir ao painel desejado">
+					<span class="step-bullet"></span>
+					<span class="step-label">Análise<br>Técnico</span>
+				</li>
+				<li id="stepQualidade" class="step-item" data-toggle="tooltip" data-placement="bottom" title="Clique para ir ao painel desejado">
+					<span class="step-bullet"></span>
+					<span class="step-label">Análise<br>Qualidade</span>
+				</li>
+				<li id="stepFiscal" class="step-item" data-toggle="tooltip" data-placement="bottom" title="Clique para ir ao painel desejado">
+					<span class="step-bullet"></span>
+					<span class="step-label">Análise<br>Fiscal</span>
+				</li>
+				<li id="stepComex" class="step-item" data-toggle="tooltip" data-placement="bottom" title="Clique para ir ao painel desejado">
+					<span class="step-bullet"></span>
+					<span class="step-label">Análise<br>COMEX</span>
+				</li>
+				<li id="stepContabil" class="step-item" data-toggle="tooltip" data-placement="bottom" title="Clique para ir ao painel desejado">
+					<span class="step-bullet"></span>
+					<span class="step-label">Análise<br>Contábil</span>
+				</li>
+				<li id="stepCustos" class="step-item" data-toggle="tooltip" data-placement="bottom" title="Clique para ir ao painel desejado">
+					<span class="step-bullet"></span>
+					<span class="step-label">Análise<br>Custos</span>
+				</li>
+				<li id="stepLogistica" class="step-item" data-toggle="tooltip" data-placement="bottom" title="Clique para ir ao painel desejado">
+					<span class="step-bullet"></span>
+					<span class="step-label">Análise<br>Logística</span>
+				</li>
+				<li id="stepPlanejamento" class="step-item" data-toggle="tooltip" data-placement="bottom" title="Clique para ir ao painel desejado">
+					<span class="step-bullet"></span>
+					<span class="step-label">Análise<br>Planejamento</span>
+				</li>
+				<li id="stepIntegracao" class="step-item">
+					<span class="step-bullet"></span>
+					<span class="step-label">Integração<br>Protheus</span>
+				</li>
+				<li style="display: none;" id="stepTI" class="step-item">
+					<span class="step-bullet"></span>
+					<span class="step-label">TI</span>
+				</li>
+				<li id="stepFim" class="step-item">
+					<span class="step-bullet"></span>
+					<span class="step-label">Fim</span>
+				</li>
+			</ul>
+			<br>
+
+			<!-- =================================================================================================== -->
+			<!-- Dados do Solicitante -->
+			<div id="A_divSolicitante" class="panel customPanel">
+				<div class="panel-heading titulo-panel">
+					<h3 class="panel-title labelPanelTitle">Dados do Solicitante</h3>
+				</div>
+				<div class="panel-body">
+					<div class="row form-group">
+						<div class="col-xs-12 col-sm-12 col-md-2">
+							<label class="control-label" for="A1_dataSolicitacao">Data da Solicitação</label>
+							<input id="A1_dataSolicitacao" name="A1_dataSolicitacao" class="form-control" readonly>
+						</div>
+						<div class="col-xs-12 col-sm-12 col-md-2">
+							<label class="control-label" for="A2_numSolicitacao">Número da Solicitação</label>
+							<input id="A2_numSolicitacao" name="A2_numSolicitacao" class="form-control" readonly>
+						</div>
+						<div class="col-xs-12 col-sm-12 col-md-5">
+							<label class="control-label" for="A3_empresa">Empresa</label>
+							<input id="A3_empresa" name="A3_empresa" class="form-control" readonly>
+						</div>
+						<div class="col-xs-12 col-sm-12 col-md-3">
+							<label class="control-label" for="A4_departamento">Departamento</label>
+							<input id="A4_departamento" name="A4_departamento" class="form-control" readonly>
+						</div>
+					</div>
+					<div class="row form-group">
+						<div class="col-xs-12 col-sm-12 col-md-8">
+							<label class="control-label" for="A5_solicitante">Solicitante</label>
+							<input id="A5_solicitante" name="A5_solicitante" class="form-control" readonly>
+						</div>
+						<div class="col-xs-12 col-sm-12 col-md-4">
+							<label class="control-label" for="A6_email">Email</label>
+							<input id="A6_email" name="A6_email" class="form-control" readonly>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- =================================================================================================== -->
+			<div id="formCadastroProduto">
+				<!-- =================================================================================================== -->
+				<!-- Campos hidden (Referente aos RADIO BUTTONS)-->
+				<input type="hidden" id="hd_B4_tipo" name="hd_B4_tipo" />
+				<input type="hidden" id="hd_B4_nutriAnimalOp" name="hd_B4_nutriAnimalOp" />
+				<input type="hidden" id="hd_B12_rastroOpcoes" name="hd_B12_rastroOpcoes" />
+				<input type="hidden" id="hd_C4_prod_importado" name="hd_C4_prod_importado" />
+				<input type="hidden" id="hd_C18_decisao" name="hd_C18_decisao" />
+				<input type="hidden" id="hd_D4_moeda_comercial" name="hd_D4_moeda_comercial" />
+				<input type="hidden" id="hd_D14_decisao" name="hd_D14_decisao" />
+				<input type="hidden" id="hd_E10_decisaoOpcoes" name="hd_E10_decisaoOpcoes" />
+				<input type="hidden" id="hd_F16_estado_fisicoOp" name="hd_F16_estado_fisicoOp" />
+				<input type="hidden" id="hd_F7_tipo_cqOp" name="hd_F7_tipo_cqOp" />
+				<input type="hidden" id="hd_F18_control_pf" name="hd_F18_control_pf" />
+				<input type="hidden" id="hd_F19_control_pc" name="hd_F19_control_pc" />
+				<input type="hidden" id="hd_F20_control_ex" name="hd_F20_control_ex" />
+				<input type="hidden" id="hd_F21_fisic_pc" name="hd_F21_fisic_pc" />
+				<input type="hidden" id="hd_F30_uso_vetOp" name="hd_F30_uso_vetOp" />
+				<input type="hidden" id="hd_F31_controle_anvisaOp" name="hd_F31_controle_anvisaOp" />
+				<input type="hidden" id="hd_F37_periculosidadeOp" name="hd_F37_periculosidadeOp" />
+				<input type="hidden" id="hd_F38_mat_embalagemOp" name="hd_F38_mat_embalagemOp" />
+				<input type="hidden" id="hd_F40_origem_prdOp" name="hd_F40_origem_prdOp" />
+				<input type="hidden" id="hd_F49_prd_or_gmoOp" name="hd_F49_prd_or_gmoOp" />
+				<input type="hidden" id="hd_F82_prod_alergenicoOp" name="hd_F82_prod_alergenicoOp" />
+				<input type="hidden" id="hd_F84_decisaoOpcoes" name="hd_F84_decisaoOpcoes" />
+				<input type="hidden" id="hd_F85_retornoOpcoes" name="hd_F85_retornoOpcoes" />
+				<input type="hidden" id="hd_G5_impostoRendaOpcoes" name="hd_G5_impostoRendaOpcoes" />
+				<input type="hidden" id="hd_G6_calculaInssOpcoes" name="hd_G6_calculaInssOpcoes" />
+				<input type="hidden" id="hd_G13_estCredIpiOpcoes" name="hd_G13_estCredIpiOpcoes" />
+				<input type="hidden" id="hd_G14_icmsOpcoes" name="hd_G14_icmsOpcoes" />
+				<input type="hidden" id="hd_G15_exeServicoOpcoes" name="hd_G15_exeServicoOpcoes" />
+				<input type="hidden" id="hd_G21_decisaoOpcoes" name="hd_G21_decisaoOpcoes" />
+				<input type="hidden" id="hd_G22_retornoOpcoes" name="hd_G22_retornoOpcoes" />
+				<input type="hidden" id="hd_H4_despImportOpcoes" name="hd_H4_despImportOpcoes" />
+				<input type="hidden" id="hd_H5_anuenteOpcoes" name="hd_H5_anuenteOpcoes" />
+				<input type="hidden" id="hd_H9_decisaoOpcoes" name="hd_H9_decisaoOpcoes" />
+				<input type="hidden" id="hd_H10_retornoOpcoes" name="hd_H10_retornoOpcoes" />
+				<input type="hidden" id="hd_I7_decisaoOpcoes" name="hd_I7_decisaoOpcoes" />
+				<input type="hidden" id="hd_J3_moeda" name="hd_J3_moeda" />
+				<input type="hidden" id="hd_J5_exRiscCambOpcoes" name="hd_J5_exRiscCambOpcoes" />
+				<input type="hidden" id="hd_J7_decisaoOpcoes" name="hd_J7_decisaoOpcoes" />
+				<input type="hidden" id="hd_K3_tipoConversao" name="hd_K3_tipoConversao" />
+				<input type="hidden" id="hd_K4_wmsOpcoes" name="hd_K4_wmsOpcoes" />
+				<input type="hidden" id="hd_K5_enderecoOpcoes" name="hd_K5_enderecoOpcoes" />
+				<input type="hidden" id="hd_K6_armDriveOpcoes" name="hd_K6_armDriveOpcoes" />
+				<input type="hidden" id="hd_K14_pulmaoOpcoes" name="hd_K14_pulmaoOpcoes" />
+				<input type="hidden" id="hd_K16_decisaoOpcoes" name="hd_K16_decisaoOpcoes" />
+				<input type="hidden" id="hd_L9_form_mrp" name="hd_L9_form_mrp" />
+				<input type="hidden" id="hd_L20_tipo_prazo" name="hd_L20_tipo_prazo" />
+				<input type="hidden" id="hd_L22_tipo_dec_op" name="hd_L22_tipo_dec_op" />
+				<input type="hidden" id="hd_L23_entra_mrp" name="hd_L23_entra_mrp" />
+				<input type="hidden" id="hd_L26_atende_necessidade" name="hd_L26_atende_necessidade" />
+				<input type="hidden" id="hd_L7_apontamento_produto" name="hd_L7_apontamento_produto" />
+				<input type="hidden" id="hd_L11_um_industria" name="hd_L11_um_industria" />
+				<input type="hidden" id="hd_L27_decisaoOpcoes" name="hd_L27_decisaoOpcoes" />
+				<input type="hidden" id="hd_L28_retornoOpcoes" name="hd_L28_retornoOpcoes" />
+				<!-- =================================================================================================== -->
+				<!-- Campos hidden (referente aos CAMPOS ZOOM) -->
+				<input type="hidden" id="B3_catalogoProdutoHidden" name="B3_catalogoProdutoHidden">
+				<input type="hidden" id="B4_tipoHidden" name="B4_tipoHidden">
+				<input type="hidden" id="B5_unidadeMedida1Hidden" name="B5_unidadeMedida1Hidden">
+				<input type="hidden" id="B6_unidadeMedida2Hidden" name="B6_unidadeMedida2Hidden">
+				<input type="hidden" id="B10_armPadraoHidden" name="B10_armPadraoHidden">
+				<input type="hidden" id="B11_centroCustoHidden" name="B11_centroCustoHidden">
+				<input type="hidden" id="C3_origemHidden" name="C3_origemHidden">
+				<input type="hidden" id="D3_finalidadeHidden" name="D3_finalidadeHidden">
+				<input type="hidden" id="E3_embalagemPremixHidden" name="E3_embalagemPremixHidden">
+				<input type="hidden" id="E4_tipoEnsaqueHidden" name="E4_tipoEnsaqueHidden">
+				<input type="hidden" id="E8_especieDestHidden" name="E8_especieDestHidden">
+				<input type="hidden" id="F4_pos_ipiHidden" name="F4_pos_ipiHidden">
+				<input type="hidden" id="F5_ex_ncmHidden" name="F5_ex_ncmHidden">
+				<input type="hidden" id="F13_especie_destHidden" name="F13_especie_destHidden">
+				<input type="hidden" id="F26_codigo_dcbHidden" name="F26_codigo_dcbHidden">
+				<input type="hidden" id="F28_classe_familia_prdHidden" name="F28_classe_familia_prdHidden">
+				<input type="hidden" id="F29_resp_tecnicoHidden" name="F29_resp_tecnicoHidden">
+				<input type="hidden" id="F34_codigo_IBAMAHidden" name="F34_codigo_IBAMAHidden">
+				<input type="hidden" id="F43_classe_impHidden" name="F43_classe_impHidden">
+				<input type="hidden" id="F45_processo_obtencaoHidden" name="F45_processo_obtencaoHidden">
+				<input type="hidden" id="F46_aplicacao_impHidden" name="F46_aplicacao_impHidden">
+				<input type="hidden" id="F47_finalidadeHidden" name="F47_finalidadeHidden">
+				<input type="hidden" id="F50_condicao_armzHidden" name="F50_condicao_armzHidden">
+				<input type="hidden" id="F17_num_onuHidden" name="F17_num_onuHidden">
+				<input type="hidden" id="F72_un_med_amostraHidden" name="F72_un_med_amostraHidden">
+				
+				<input type="hidden" id="F80_categoria_prdHidden" name="F80_categoria_prdHidden">
+				<input type="hidden" id="G4_grupoTribHidden" name="G4_grupoTribHidden">
+				<input type="hidden" id="G11_codServIssHidden" name="G11_codServIssHidden">
+				<input type="hidden" id="G12_cestHidden" name="G12_cestHidden">
+				<input type="hidden" id="G16_tipoServicoHidden" name="G16_tipoServicoHidden">
+				<input type="hidden" id="G18_nbsHidden" name="G18_nbsHidden">
+				<input type="hidden" id="I3_contaContabilHidden" name="I3_contaContabilHidden">
+				<input type="hidden" id="I4_itemContaHidden" name="I4_itemContaHidden">
+				<input type="hidden" id="I5_classeValorHidden" name="I5_classeValorHidden">
+				<input type="hidden" id="J3_moedaHidden" name="J3_moedaHidden">
+				<input type="hidden" id="J4_contaOrcamentHidden" name="J4_contaOrcamentHidden">
+				<input type="hidden" id="K3_tipoConversaoHidden" name="K3_tipoConversaoHidden">
+				<input type="hidden" id="K10_zonaArmazHidden" name="K10_zonaArmazHidden">
+				<input type="hidden" id="K11_servEntrHidden" name="K11_servEntrHidden">
+				<input type="hidden" id="K12_servTransHidden" name="K12_servTransHidden">
+				<input type="hidden" id="K13_servSaidaHidden" name="K13_servSaidaHidden">
+				<input type="hidden" id="K15_servEmbHidden" name="K15_servEmbHidden">
+				<input type="hidden" id="K16_endSaidaHidden" name="K16_endSaidaHidden">
+				<input type="hidden" id="K18_endereco_entradaHidden" name="K18_endereco_entradaHidden" />
+				<input type="hidden" id="L3_grupoHidden" name="L3_grupoHidden">
+				<input type="hidden" id="L10_aglu_mrpHidden" name="L10_aglu_mrpHidden">
+				<input type="hidden" id="L17_form_est_segHidden" name="L17_form_est_segHidden">
+				<input type="hidden" id="L18_form_prazoHidden" name="L18_form_prazoHidden">
+				<input type="hidden" id="L12_tipo_rotuloHidden" name="L12_tipo_rotuloHidden">
+				<input type="hidden" id="L13_tipo_rotulo_premixHidden" name="L13_tipo_rotulo_premixHidden">
+				<input type="hidden" id="L14_tipo_ensaque_premixHidden" name="L14_tipo_ensaque_premixHidden">
+				<input type="hidden" id="identificador" name="identificador">
+				<!-- Abertura -->
+				<div id="B_divAbertura" class="panel customPanel">
+					<div class="panel-heading titulo-panel">
+						<h3 class="panel-title labelPanelTitle">Abertura</h3>
+					</div>
+					<div class="panel-body">
+						<div class="row form-group">
+							<div class="col-md-2 form-group">
+								<input type="hidden" id="codTipoSolicitacao" name="codTipoSolicitacao" value="" />
+								<label class="control-label required" for="tipoSolicitacao">Tipo solicitação</label>
+								<div class="radio"><label><input type="radio" name="tipoSolicitacao" id="tipoSolicitacaoCadastro" value="I" readonly><span>Adicionar Produto</span></label></div>
+								<div class="radio"><label><input type="radio" name="tipoSolicitacao" id="tipoSolicitacaoAlteracao" value="A" readonly><span>Editar Produto</span></label></div>
+							</div>
+						</div>
+						<div class="row form-group">
+							<div class="col-xs-12 col-sm-12 col-md-4">
+								<label class="control-label required" for="zoomEmpresa">Empresa</label>
+								<input type="hidden" id="codTenantId" name="codTenantId" value="" />
+								<input type="hidden" id="empresaFilial" name="empresaFilial" value="" />
+								<div class="input-group">
+									<input type="number" id="zoomEmpresa" name="zoomEmpresa" class="form-control zoom-tdi" placeholder="Clique na lupa para pesquisar" />
+									<div id="btnEmpresa" class="input-group-addon" style="cursor:pointer;" onclick="zoomEmpresa(this.id.replace(/\D/g, ''));">
+										<span class="fluigicon fluigicon-zoom-in fluigicon-sm"></span>
+									</div>
+								</div>
+							</div>
+							<div class="col-xs-12 col-sm-12 col-md-4">
+								<label class="control-label" for="empresaNome">Nome</label>
+								<input type="text" id="empresaNome" name="empresaNome" class="form-control" readonly>
+							</div>
+							<div class="col-xs-12 col-sm-12 col-md-4">
+								<label class="control-label" for="empresaCgc">CGC</label>
+								<input type="number" id="empresaCgc" name="empresaCgc" class="form-control" readonly>
+							</div>
+						</div>
+						<div class="row form-group">
+							<div class="col-xs-12 col-sm-12 col-md-4">
+								<label class="control-label" for="B1_codProduto">Código Produto</label>
+								<div class="input-group">
+									<input type="text" id="B1_codProduto" name="B1_codProduto" class="form-control zoom-tdi" placeholder="Clique na lupa para pesquisar" />
+									<div id="btnCodProduto" class="input-group-addon" style="cursor:pointer;" onclick="zoomCodProduto(this.id.replace(/\D/g, ''));">
+										<span class="fluigicon fluigicon-zoom-in fluigicon-sm"></span>
+									</div>
+								</div>
+							</div>
+							<div class="col-xs-12 col-sm-12 col-md-4">
+								<label class="control-label required" for="B3_catalogoProduto">Catálogo de Produto</label>
+								<div class="input-group">
+									<input type="text" id="B3_catalogoProduto" name="B3_catalogoProduto" class="form-control zoom-tdi" placeholder="Clique na lupa para pesquisar" />
+									<div id="btnCatalogoProd" class="input-group-addon" style="cursor:pointer;" onclick="zoomCatalogoProd(this.id.replace(/\D/g, ''));">
+										<span class="fluigicon fluigicon-zoom-in fluigicon-sm"></span>
+									</div>
+								</div>
+							</div>
+							<div class="col-xs-12 col-sm-12 col-md-4">
+								<label class="control-label required" for="B4_tipo">Tipo</label>
+								<div class="input-group">
+									<input type="text" id="B4_tipo" name="B4_tipo" class="form-control zoom-tdi" placeholder="Clique na lupa para pesquisar" />
+									<div id="btnTipoProd" class="input-group-addon" style="cursor:pointer;" onclick="zoomTipoPrd(this.id.replace(/\D/g, ''));">
+										<span class="fluigicon fluigicon-zoom-in fluigicon-sm"></span>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="row form-group">
+							<div class="col-xs-12 col-sm-12 col-md-4">
+								<label class="control-label required" for="B2_descricao">Descrição</label>
+								<textarea rowspan="3" class="form-control" name="B2_descricao" id="B2_descricao" maxlength="90"></textarea>
+							</div>
+							<div class="col-xs-12 col-sm-12 col-md-4">
+								<label class="control-label required" for="B2_descricao_ingles">Descrição Inglês</label>
+								<textarea rowspan="3" class="form-control" name="B2_descricao_ingles" id="B2_descricao_ingles" maxlength="90"></textarea>
+							</div>
+							<div class="col-xs-12 col-sm-12 col-md-4">
+								<label class="control-label required" for="B2_descricao_espanhol">Descrição Espanhol</label>
+								<textarea rowspan="3" class="form-control" name="B2_descricao_espanhol" id="B2_descricao_espanhol" maxlength="90"></textarea>
+							</div>
+						</div>
+						<div class="row form-group">
+							<div class="col-xs-12 col-sm-12 col-md-4">
+								<label class="control-label required" for="B5_unidadeMedida1">1ª Unidade Medida</label>
+								<div class="input-group">
+									<input type="text" id="B5_unidadeMedida1" name="B5_unidadeMedida1" class="form-control zoom-tdi" placeholder="Clique na lupa para pesquisar" />
+									<div id="btnUnidadeMedida1" class="input-group-addon" style="cursor:pointer;" onclick="zoomUnidadeMed1(this.id.replace(/\D/g, ''));">
+										<span class="fluigicon fluigicon-zoom-in fluigicon-sm"></span>
+									</div>
+								</div>
+							</div>
+							<div class="col-xs-12 col-sm-12 col-md-4">
+								<label class="control-label required" for="B6_unidadeMedida2">2ª Unidade Medida</label>
+								<div class="input-group">
+									<input type="text" id="B6_unidadeMedida2" name="B6_unidadeMedida2" class="form-control zoom-tdi" placeholder="Clique na lupa para pesquisar" />
+									<div id="btnUnidadeMedida2" class="input-group-addon" style="cursor:pointer;" onclick="zoomUnidadeMed2(this.id.replace(/\D/g, ''));">
+										<span class="fluigicon fluigicon-zoom-in fluigicon-sm"></span>
+									</div>
+								</div>
+							</div>
+							<div class="col-xs-12 col-sm-12 col-md-4">
+								<label class="control-label required" for="B7_qntdeEmbalagens">Quantidade por Embalagem (Grade)</label>
+								<input type="number" id="B7_qntdeEmbalagens" name="B7_qntdeEmbalagens" class="form-control" onchange="preencheDescricao()">
+							</div>
+						</div>
+						<div class="row form-group">
+							<div class="col-xs-12 col-sm-12 col-md-4">
+								<label class="control-label required" for="B8_fatorConversao">Fator de Conversão </label>
+								<input type="number" id="B8_fatorConversao" name="B8_fatorConversao" class="form-control">
+							</div>
+							<div class="col-xs-12 col-sm-12 col-md-4">
+								<label class="control-label required" for="B9_pesoBruto">Peso Bruto</label>
+								<input type="number" id="B9_pesoBruto" name="B9_pesoBruto" class="form-control">
+							</div>
+							<div class="col-xs-12 col-sm-12 col-md-4">
+								<label class="control-label required" for="B10_armPadrao">Armazém Padrão</label>
+								<div class="input-group">
+									<input type="text" id="B10_armPadrao" name="B10_armPadrao" class="form-control zoom-tdi" placeholder="Clique na lupa para pesquisar" />
+									<div id="btnArmPadrao" class="input-group-addon" style="cursor:pointer;" onclick="zoomArmPadrao(this.id.replace(/\D/g, ''));">
+										<span class="fluigicon fluigicon-zoom-in fluigicon-sm"></span>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="row form-group">
+							<div class="col-xs-12 col-sm-12 col-md-4">
+								<label class="control-label required" for="B11_centroCusto">Centro de Custo</label>
+								<div class="input-group">
+									<input type="text" id="B11_centroCusto" name="B11_centroCusto" class="form-control zoom-tdi" placeholder="Clique na lupa para pesquisar" />
+									<div id="btnCentroCusto" class="input-group-addon" style="cursor:pointer;" onclick="zoomCentroCusto(this.id.replace(/\D/g, ''));">
+										<span class="fluigicon fluigicon-zoom-in fluigicon-sm"></span>
+									</div>
+								</div>
+							</div>
+							<div class="col-xs-12 col-sm-12 col-md-3">
+								<label class="control-label">Rastro</label>
+								<div class="radio">
+									<label>
+										<input type="radio" name="B12_rastroOpcoes" id="B12_rastro1" value="S"> S - Sub Lote
+									</label>
+								</div>
+								<div class="radio">
+									<label>
+										<input type="radio" name="B12_rastroOpcoes" id="B12_rastro2" value="L"> L - Lote
+									</label>
+								</div>
+								<div class="radio">
+									<label>
+										<input type="radio" name="B12_rastroOpcoes" id="B12_rastro3" value="N"> N - Não
+										Utiliza
+									</label>
+								</div>
+							</div>
+							<div id="B_divCampoNutriAnimal" style="display: none;" class="col-xs-12 col-sm-12 col-md-1">
+								<label class="control-label">Nutrição Animal?</label>
+								<div class="radio">
+									<label>
+										<input type="radio" name="B4_nutriAnimalOp" id="B4_nutriAnimal1" value="S"> Sim
+									</label>
+								</div>
+								<div class="radio">
+									<label>
+										<input type="radio" name="B4_nutriAnimalOp" id="B4_nutriAnimal2" value="N"> Não
+									</label>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- =================================================================================================== -->
+				<!-- Compras -->
+				<div id="C_divCompras" class="panel customPanel">
+					<div class="panel-heading titulo-panel">
+						<h3 class="panel-title labelPanelTitle">Compras</h3>
+					</div>
+					<div class="panel-body">
+						<div class="row form-group">
+							<div class="col-xs-12 col-sm-12 col-md-8">
+								<label class="control-label" for="C1_responsavel">Responsável</label>
+								<input id="C1_responsavel" name="C1_responsavel" class="form-control" readonly>
+							</div>
+							<div class="col-xs-12 col-sm-12 col-md-4">
+								<label class="control-label" for="C2_data">Data</label>
+								<input id="C2_data" name="C2_data" class="form-control" readonly>
+							</div>
+						</div>
+						<div class="row form-group">
+							<div class="col-xs-12 col-sm-12 col-md-3">
+								<label class="control-label required" for="C3_origem">Origem</label>
+								<div class="input-group">
+									<input type="text" id="C3_origem" name="C3_origem" class="form-control zoom-tdi" placeholder="Clique na lupa para pesquisar" />
+									<div id="btnOrigem" class="input-group-addon" style="cursor:pointer;" onclick="zoomOrigem(this.id.replace(/\D/g, ''));">
+										<span class="fluigicon fluigicon-zoom-in fluigicon-sm"></span>
+									</div>
+								</div>
+							</div>
+							<div class="col-xs-12 col-sm-12 col-md-3">
+								<label class="control-label required" for="C4_prod_importado">Produto Importado?</label>
+								<div class="radio">
+									<label><input type="radio" name="C4_prod_importado" id="C4_prod_importadoOp1" value="S">
+										Sim</label>
+								</div>
+								<div class="radio">
+									<label><input type="radio" name="C4_prod_importado" id="C4_prod_importadoOp2" value="N">
+										Não</label>
+								</div>
+							</div>
+							<div class="col-xs-12 col-sm-12 col-md-3">
+								<label class="control-label" for="C5_lote_minimo">Lote Mínimo</label>
+								<input type="number" id="C5_lote_minimo" name="C5_lote_minimo" class="form-control">
+							</div>
+							<div class="col-xs-12 col-sm-12 col-md-3">
+								<label class="control-label" for="C6_lote_econom">Lote Econom.</label>
+								<input type="number" id="C6_lote_econom" name="C6_lote_econom" class="form-control">
+							</div>
+						</div>
+						<div class="row form-group">
+							<table class="table" tablename="tbFornecedor" id="tbFornecedor" noaddbutton=true nodeletebutton="true" style="border: 1">
+								<thead>
+									<tr>
+										<th style="width: 5%;"></th>
+										<th style="width: 90%;"></th>
+										<th style="width: 5%;"></th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>
+											<label class="control-label" for="sequenciaFornecedorLabel">Seq.</label>
+											<br><span class="label label-success seqProduto" id="sequenciaFornecedorLabel"></span>
+											<input type="hidden" class="form-control" id="sequenciaFornecedor" name="sequenciaFornecedor" />
+										</td>
+										<td>
+											<h5>COMPRAS</h5>
+											<br>
+											<div class="row form-group">
+												<div class="col-xs-12 col-sm-12 col-md-3">
+													<label class="control-label required" for="C8_fornecedor">Fornecedor</label>
+													<div class="input-group">
+														<input type="text" id="C8_fornecedor" name="C8_fornecedor" class="form-control zoom-tdi" />
+														<div id="btnFornecedor" class="input-group-addon" style="cursor:pointer;" onclick="zoomFornecedor(this.id.replace(/\D/g, ''));">
+															<span class="fluigicon fluigicon-zoom-in fluigicon-sm"></span>
+														</div>
+													</div>
+													<input type="hidden" name="C8_fornecedorHidden" id="C8_fornecedorHidden">
+												</div>
+												<div class="col-xs-12 col-sm-12 col-md-3">
+													<label class="control-label required" for="C9_loja">Loja
+														Fornecedor</label>
+													<input type="text" id="C9_loja" name="C9_loja" class="form-control" readonly />
+												</div>
+												<div class="col-xs-12 col-sm-12 col-md-3">
+													<label class="control-label" for="C10_codProdutoFornecedor">Cód. Produto
+														Fornecedor</label>
+													<input type="text" id="C10_codProdutoFornecedor" name="C10_codProdutoFornecedor" class="form-control" maxlength="15" />
+												</div>
+												<div class="col-xs-12 col-sm-12 col-md-3">
+													<label class="control-label required" for="C11_fabricante">Fabricante</label>
+													<div class="input-group">
+														<input type="text" id="C11_fabricante" name="C11_fabricante" class="form-control zoom-tdi" />
+														<div id="btnFabricante" class="input-group-addon" style="cursor:pointer;" onclick="zoomFabricante(this.id.replace(/\D/g, ''));">
+															<span class="fluigicon fluigicon-zoom-in fluigicon-sm"></span>
+														</div>
+													</div>
+													<input type="hidden" name="C11_fabricanteHidden" id="C11_fabricanteHidden">
+												</div>
+											</div>
+											<div class="row form-group">
+												<div class="col-xs-12 col-sm-12 col-md-3">
+													<label class="control-label required" for="C12_loja_fabricante">Loja
+														Fabricante</label>
+													<input type="text" id="C12_loja_fabricante" name="C12_loja_fabricante" class="form-control" readonly />
+												</div>
+												<div class="col-xs-12 col-sm-12 col-md-3">
+													<label class="control-label required" for="C13_fab_rev_perm">Fab/Rev/Perm</label>
+													<div class="radio">
+														<label>
+															<input type="radio" name="C13_fab_rev_perm" id="C13_fab_rev_perm1" value="F">
+															F - Fabricante
+														</label>
+													</div>
+													<div class="radio">
+														<label>
+															<input type="radio" name="C13_fab_rev_perm" id="C13_fab_rev_perm2" value="R">
+															R - Revendedor
+														</label>
+													</div>
+													<div class="radio">
+														<label>
+															<input type="radio" name="C13_fab_rev_perm" id="C13_fab_rev_perm3" value="P">
+															P - Permuta
+														</label>
+													</div>
+													<input type="hidden" name="hd_C13_fab_rev_perm" id="hd_C13_fab_rev_perm">
+												</div>
+												<div class="col-xs-12 col-sm-12 col-md-3">
+													<label class="control-label" for="C14_situacao">Situação</label>
+													<div class="input-group">
+														<input type="text" id="C14_situacao" name="C14_situacao" class="form-control zoom-tdi" />
+														<div id="btnSituacao" class="input-group-addon" style="cursor:pointer;" onclick="zoomSituacao(this.id.replace(/\D/g, ''));">
+															<span class="fluigicon fluigicon-zoom-in fluigicon-sm"></span>
+														</div>
+													</div>
+													<input type="hidden" name="C14_situacaoHidden" id="C14_situacaoHidden">
+												</div>
+												<div class="col-xs-12 col-sm-12 col-md-3">
+													<label class="control-label required" for="C15_unidade">Unidade</label>
+													<div class="input-group">
+														<input type="text" id="C15_unidade" name="C15_unidade" class="form-control zoom-tdi" />
+														<div id="btnUnidade" class="input-group-addon" style="cursor:pointer;" onclick="zoomUnidade(this.id.replace(/\D/g, ''));">
+															<span class="fluigicon fluigicon-zoom-in fluigicon-sm"></span>
+														</div>
+													</div>
+													<input type="hidden" name="C15_unidadeHidden" id="C15_unidadeHidden">
+												</div>
+											</div>
+											<div class="row form-group">
+												<div class="col-xs-12 col-sm-12 col-md-3">
+													<label class="control-label" for="C16_fatorConversao">Fator
+														Conversão</label>
+													<input type="number" id="C16_fatorConversao" name="C16_fatorConversao" class="form-control" />
+												</div>
+												<div class="col-xs-12 col-sm-12 col-md-3">
+													<label class="control-label required" for="C17_tipoConversao">Tipo
+														Conversão</label>
+													<div class="radio">
+														<label>
+															<input type="radio" name="C17_tipoConversao" id="C17_tipoConversao1" value="M">
+															Multiplicador
+														</label>
+													</div>
+													<div class="radio">
+														<label>
+															<input type="radio" name="C17_tipoConversao" id="C17_tipoConversao2" value="D">
+															Divisor
+														</label>
+													</div>
+													<input type="hidden" name="hd_C17_tipoConversao" id="hd_C17_tipoConversao">
+												</div>
+											</div>
+											<br>
+											<h5>QUALIDADE</h5>
+											<br>
+											<div class="row form-group">
+												<div class="col-xs-12 col-sm-12 col-md-1">
+													<label class="control-label required" for="F61_homologacao">Homologação</label>
+													<div class="radio">
+														<label>
+															<input type="radio" name="F61_homologacao" id="CF61_homologacao1" value="1">
+															Sim
+														</label>
+													</div>
+													<div class="radio">
+														<label>
+															<input type="radio" name="F61_homologacao" id="F61_homologacao2" value="2">
+															Não
+														</label>
+													</div>
+													<input type="hidden" name="hd_F61_homologacao" id="hd_F61_homologacao">
+												</div>
+												<div class="col-xs-12 col-sm-12 col-md-2">
+													<label class="control-label" for="F62_data_expiracao">Data de
+														Expiração</label>
+													<input type="datetime" id="F62_data_expiracao" name="F62_data_expiracao" class="form-control datetime" />
+												</div>
+												<div class="col-xs-12 col-sm-12 col-md-3">
+													<label class="control-label" for="F63_skip_lote">Skip Lote</label>
+													<div class="input-group">
+														<input type="text" id="F63_skip_lote" name="F63_skip_lote" class="form-control zoom-tdi" />
+														<div class="input-group-addon" style="cursor:pointer;" onclick="LocateZoomWithInputId(this, 'zoomSkipLote');">
+															<span class="fluigicon fluigicon-zoom-in fluigicon-sm"></span>
+														</div>
+													</div>
+													<input type="hidden" name="F63_skip_loteHidden" id="F63_skip_loteHidden">
+												</div>
+												<div class="col-xs-12 col-sm-12 col-md-2">
+													<label class="control-label" for="F64_tempo_limite">Tempo Limite</label>
+													<input type="number" id="F64_tempo_limite" name="F64_tempo_limite" class="form-control" />
+												</div>
+												<div class="col-xs-12 col-sm-12 col-md-2">
+													<label class="control-label" for="F65_aviso_3meses">Aviso</label>
+													<div class="radio">
+														<label>
+															<input type="radio" name="F65_aviso_3meses" id="F65_aviso_3meses1" value="1">
+															Sim
+														</label>
+													</div>
+													<div class="radio">
+														<label>
+															<input type="radio" name="F65_aviso_3meses" id="F65_aviso_3meses2" value="2">
+															Não
+														</label>
+													</div>
+													<input type="hidden" name="hd_F65_aviso_3meses" id="hd_F65_aviso_3meses">
+												</div>
+												<div class="col-xs-12 col-sm-12 col-md-2">
+													<label class="control-label" for="F66_envio_email">Envio Email
+														Exp.</label>
+													<div class="radio">
+														<label>
+															<input type="radio" name="F66_envio_email" id="F66_envio_email1" value="1">
+															Sim
+														</label>
+													</div>
+													<div class="radio">
+														<label>
+															<input type="radio" name="F66_envio_email" id="F66_envio_email2" value="2">
+															Não
+														</label>
+													</div>
+													<input type="hidden" name="hd_F66_envio_email" id="hd_F66_envio_email">
+												</div>
+											</div>
+										</td>
+										<td>
+											<button type="button" class="btn btn-delete trash-fornecedor" onclick="fnWdkRemoveChild(this);" aria-label="Delete">
+												<i class="fas fa-trash-alt"></i>
+											</button>
+										</td>
+									</tr>
+								</tbody>
+								<tfoot>
+									<tr>
+										<td colspan="15">
+											<div class="custom-footer">
+												<div class="footer-actions">
+													<button type="button" class="btn btn-success" id="btnAddFornecedor" onclick="addNewTableRow('tbFornecedor')">Adicionar
+														Fornecedor</button>
+												</div>
+											</div>
+										</td>
+									</tr>
+								</tfoot>
+							</table>
+						</div>
+						<div class="row form-group">
+							<div class="col-xs-12 col-sm-12 col-md-4">
+								<label class="control-label required" for="C18_decisao">Decisão</label>
+								<div class="radio">
+									<label><input type="radio" name="C18_decisao" id="C18_decisao1" value="aprovado">
+										Aprovado</label>
+								</div>
+								<div class="radio">
+									<label><input type="radio" name="C18_decisao" id="C18_decisao2" value="ajuste"> Ajuste
+										Solicitante</label>
+								</div>
+							</div>
+							<div class="col-xs-12 col-sm-12 col-md-8">
+								<label class="control-label required" for="C19_justificativa">Justificativa</label>
+								<textarea id="C19_justificativa" name="C19_justificativa" class="form-control"></textarea>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- =================================================================================================== -->
+				<!-- Comercial -->
+				<div id="D_divComercial" class="panel customPanel">
+					<div class="panel-heading titulo-panel">
+						<h3 class="panel-title labelPanelTitle">Comercial</h3>
+					</div>
+					<div class="panel-body">
+						<div class="row form-group">
+							<div class="col-xs-12 col-sm-12 col-md-8">
+								<label class="control-label" for="D1_responsavel">Responsável</label>
+								<input id="D1_responsavel" name="D1_responsavel" class="form-control" readonly>
+							</div>
+							<div class="col-xs-12 col-sm-12 col-md-4">
+								<label class="control-label" for="D2_data">Data</label>
+								<input id="D2_data" name="D2_data" class="form-control" readonly>
+							</div>
+						</div>
+
+						<!-- Linha 2 -->
+						<div class="row form-group">
+							<div class="col-xs-12 col-sm-12 col-md-3">
+								<label class="control-label required" for="D3_finalidade">Finalidade</label>
+								<div class="input-group">
+									<input type="text" id="D3_finalidade" name="D3_finalidade" class="form-control zoom-tdi" placeholder="Clique na lupa para pesquisar" />
+									<div id="btnFinalidade" class="input-group-addon" style="cursor:pointer;" onclick="zoomFinalidade(this.id.replace(/\D/g, ''));">
+										<span class="fluigicon fluigicon-zoom-in fluigicon-sm"></span>
+									</div>
+								</div>
+							</div>
+							<div class="col-xs-12 col-sm-12 col-md-3">
+								<label class="control-label required" for="D4_moeda_comercial">Moeda Comercial</label>
+								<div id="D4_moeda_comercial">
+									<div class="radio">
+										<label><input type="radio" name="D4_moeda_comercial" id="D4_moeda_comercialOp1" value="R$"> R$ - Real</label>
+									</div>
+									<div class="radio">
+										<label><input type="radio" name="D4_moeda_comercial" id="D4_moeda_comercialOp2" value="US$"> US$ - Dólar</label>
+									</div>
+									<div class="radio">
+										<label><input type="radio" name="D4_moeda_comercial" id="D4_moeda_comercialOp3" value="EUR"> EUR - Euro</label>
+									</div>
+								</div>
+							</div>
+							<div class="col-xs-12 col-sm-12 col-md-3">
+								<label class="control-label" for="D5_margem_bruto">% Margem Bruto</label>
+								<input id="D5_margem_bruto" name="D5_margem_bruto" class="form-control" type="number">
+							</div>
+						</div>
+
+						<br>
+						<div class="row form-group">
+							<table class="table" tablename="tbCliente" id="tbCliente" noaddbutton=true nodeletebutton="true" style="border: 1">
+								<thead>
+									<tr>
+										<th style="width: 5%;"></th>
+										<th style="width: 90%;"></th>
+										<th style="width: 5%;"></th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>
+											<label class="control-label" for="sequenciaClienteLabel">Seq.</label>
+											<br><span class="label label-success seqProduto" id="sequenciaClienteLabel"></span>
+											<input type="hidden" class="form-control" id="sequenciaCliente" name="sequenciaCliente" />
+										</td>
+										<td>
+											<div class="row form-group">
+												<div class="col-xs-12 col-sm-12 col-md-4">
+													<label class="control-label required" for="D7_cliente">Cliente</label>
+													<div class="input-group">
+														<input type="text" id="D7_cliente" name="D7_cliente" class="form-control zoom-tdi" />
+														<div id="btnCliente" class="input-group-addon" style="cursor:pointer;" onclick="zoomCliente(this.id.replace(/\D/g, ''));">
+															<span class="fluigicon fluigicon-zoom-in fluigicon-sm"></span>
+														</div>
+													</div>
+													<input type="hidden" name="D7_clienteHidden" id="D7_clienteHidden">
+												</div>
+												<div class="col-xs-12 col-sm-12 col-md-4">
+													<label class="control-label" for="D8_loja">Loja</label>
+													<input type="text" id="D8_loja" name="D8_loja" class="form-control" readonly />
+												</div>
+												<div class="col-xs-12 col-sm-12 col-md-4">
+													<label class="control-label" for="D10_descricaoCliente">Descrição
+														Cliente</label>
+													<input type="text" id="D10_descricaoCliente" name="D10_descricaoCliente" class="form-control" readonly maxlength="30" />
+												</div>
+											</div>
+											<div class="row form-group">
+												<div class="col-xs-12 col-sm-12 col-md-3">
+													<label class="control-label" for="D9_codProdutoCliente">Cód. Produto
+														Cliente</label>
+													<input type="text" id="D9_codProdutoCliente" name="D9_codProdutoCliente" class="form-control" maxlength="30" />
+												</div>
+												<div class="col-xs-12 col-sm-12 col-md-3">
+													<label class="control-label" for="D11_clienteCodFabricante">Cód.
+														Fabricante</label>
+													<div class="input-group">
+														<input type="text" id="D11_clienteCodFabricante" name="D11_clienteCodFabricante" class="form-control zoom-tdi" />
+														<div id="btnClienteCodFabricante" class="input-group-addon" style="cursor:pointer;" onclick="zoomClienteCodFabricante(this.id.replace(/\D/g, ''));">
+															<span class="fluigicon fluigicon-zoom-in fluigicon-sm"></span>
+														</div>
+													</div>
+													<input type="hidden" name="D11_clienteCodFabricanteHidden" id="D11_clienteCodFabricanteHidden">
+												</div>
+												<div class="col-xs-12 col-sm-12 col-md-3">
+													<label class="control-label" for="D12_lojaFabricante">Loja
+														Fabricante</label>
+													<input type="text" id="D12_lojaFabricante" name="D12_lojaFabricante" class="form-control" readonly />
+												</div>
+												<div class="col-xs-12 col-sm-12 col-md-3">
+													<label class="control-label required" for="D13_clienteCentroCusto">C.Custo</label>
+													<div class="input-group">
+														<input type="text" id="D13_clienteCentroCusto" name="D13_clienteCentroCusto" class="form-control zoom-tdi" />
+														<div id="btnClienteCentroCusto" class="input-group-addon" style="cursor:pointer;" onclick="zoomClienteCentroCusto(this.id.replace(/\D/g, ''));">
+															<span class="fluigicon fluigicon-zoom-in fluigicon-sm"></span>
+														</div>
+													</div>
+													<input type="hidden" name="D13_clienteCentroCustoHidden" id="D13_clienteCentroCustoHidden">
+												</div>
+											</div>
+										</td>
+										<td>
+											<button type="button" class="btn btn-delete trash-cliente" onclick="fnWdkRemoveChild(this);" aria-label="Delete">
+												<i class="fas fa-trash-alt"></i>
+											</button>
+										</td>
+									</tr>
+								</tbody>
+								<tfoot>
+									<tr>
+										<td colspan="15">
+											<div class="custom-footer">
+												<div class="footer-actions">
+													<button type="button" class="btn btn-success" id="btnAddCliente" onclick="addNewTableRow('tbCliente')">Adicionar
+														Cliente</button>
+												</div>
+											</div>
+										</td>
+									</tr>
+								</tfoot>
+							</table>
+						</div>
+
+						<!-- Linha 3 -->
+						<div class="row form-group">
+							<div class="col-xs-12 col-sm-12 col-md-4">
+								<label class="control-label required" for="D14_decisao">Decisão</label>
+								<div class="radio">
+									<label><input type="radio" name="D14_decisao" id="D14_decisao1" value="aprovado">
+										Aprovado</label>
+								</div>
+								<div class="radio">
+									<label><input type="radio" name="D14_decisao" id="D14_decisao2" value="ajuste"> Ajuste
+										Solicitante</label>
+								</div>
+							</div>
+							<div class="col-xs-12 col-sm-12 col-md-8">
+								<label class="control-label required" for="D15_justificativa">Justificativa</label>
+								<textarea id="D15_justificativa" name="D15_justificativa" class="form-control"></textarea>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- =================================================================================================== -->
+				<!-- Técnico -->
+				<div id="E_divTecnico" class="panel customPanel">
+					<div class="panel-heading titulo-panel">
+						<h3 class="panel-title labelPanelTitle">Técnico</h3>
+					</div>
+					<div class="panel-body">
+						<div class="row form-group">
+							<div class="col-xs-12 col-sm-12 col-md-8">
+								<label class="control-label" for="E1_responsavel">Responsável</label>
+								<input id="E1_responsavel" name="E1_responsavel" class="form-control" readonly>
+							</div>
+							<div class="col-xs-12 col-sm-12 col-md-4">
+								<label class="control-label" for="E2_data">Data</label>
+								<input id="E2_data" name="E2_data" class="form-control" readonly>
+							</div>
+						</div>
+						<div class="row form-group">
+							<div class="col-xs-12 col-sm-12 col-md-12">
+								<label class="control-label required" for="F51_nome_rotulo_premix">Nome Rótulo
+									Premix</label>
+								<input id="F51_nome_rotulo_premix" name="F51_nome_rotulo_premix" class="form-control" maxlength="254">
+							</div>
+						</div>
+						<div class="row form-group">
+							<div class="col-xs-12 col-sm-12 col-md-6">
+								<label class="control-label required" for="E3_embalagemPremix">Embalagem Premix</label>
+								<div class="input-group">
+									<input type="text" id="E3_embalagemPremix" name="E3_embalagemPremix" class="form-control zoom-tdi" placeholder="Clique na lupa para pesquisar" />
+									<div id="btnEmbPremix" class="input-group-addon" style="cursor:pointer;" onclick="zoomEmbPremix(this.id.replace(/\D/g, ''));">
+										<span class="fluigicon fluigicon-zoom-in fluigicon-sm"></span>
+									</div>
+								</div>
+							</div>
+							<div class="col-xs-12 col-sm-12 col-md-6">
+								<label class="control-label required" for="E4_tipoEnsaque">Tipo Ensaque Premix</label>
+								<div class="input-group">
+									<input type="text" id="E4_tipoEnsaque" name="E4_tipoEnsaque" class="form-control zoom-tdi" placeholder="Clique na lupa para pesquisar" />
+									<div id="btnTipoEnsaque" class="input-group-addon" style="cursor:pointer;" onclick="zoomTipoEnsaque(this.id.replace(/\D/g, ''));">
+										<span class="fluigicon fluigicon-zoom-in fluigicon-sm"></span>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="row form-group">
+							<div class="col-xs-12 col-sm-12 col-md-3">
+								<label class="control-label " for="E5_clasIndProd">Classificação Indicação
+									Prod.</label>
+								<input id="E5_clasIndProd" name="E5_clasIndProd" class="form-control" maxlength="20">
+							</div>
+							<div class="col-xs-12 col-sm-12 col-md-1">
+								<label class="control-label required" for="E6_diasValidade">Dias Validade</label>
+								<input type="number" id="E6_diasValidade" name="E6_diasValidade" class="form-control">
+							</div>
+							<div class="col-xs-12 col-sm-12 col-md-3">
+								<label class="control-label required" for="E7_modoUso">Modo de Uso</label>
+								<input id="E7_modoUso" name="E7_modoUso" class="form-control" maxlength="254">
+							</div>
+							<div class="col-xs-12 col-sm-12 col-md-5">
+								<label class="control-label " for="E8_especieDest">Espécie Dest.</label>
+								<div class="input-group">
+									<input type="text" id="E8_especieDest" name="E8_especieDest" class="form-control zoom-tdi" placeholder="Clique na lupa para pesquisar" />
+									<div id="btnEspecieDest" class="input-group-addon" style="cursor:pointer;" onclick="zoomEspecieDest(this.id.replace(/\D/g, ''));">
+										<span class="fluigicon fluigicon-zoom-in fluigicon-sm"></span>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="row form-group">
+							<div class="col-xs-12 col-sm-12 col-md-12" id="E9_divSelecionaFoto">
+								<label class="control-label">Foto</label>
+								<br>
+								<br>
+								<button id="openModalE9" class="btn btn-success">Escolher
+									Foto</button>
+								<input type="hidden" name="E9_fotoHidden" id="E9_fotoHidden">
+								<input type="hidden" name="E9_fotoUrlHidden" id="E9_fotoUrlHidden">
+								<input type="hidden" name="E9_fotoDescHidden" id="E9_fotoDescHidden">
+							</div>
+						</div>
+						<div class="row form-group">
+							<div class="col-xs-12 col-sm-12 col-md-4">
+								<label class="control-label required">Decisão</label>
+								<div class="radio">
+									<label>
+										<input type="radio" name="E10_decisaoOpcoes" id="E10_decisao1" value="aprovado">
+										Aprovado
+									</label>
+								</div>
+								<div class="radio">
+									<label>
+										<input type="radio" name="E10_decisaoOpcoes" id="E10_decisao2" value="ajuste">
+										Ajuste Solicitante
+									</label>
+								</div>
+							</div>
+							<div class="col-xs-12 col-sm-12 col-md-8">
+								<label class="control-label required" for="E11_justificativa">Justificativa</label>
+								<textarea id="E11_justificativa" name="E11_justificativa" class="form-control"></textarea>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- =================================================================================================== -->
+				<!-- Qualidade -->
+				<div id="F_divQualidade" class="panel customPanel">
+					<div class="panel-heading titulo-panel">
+						<h3 class="panel-title labelPanelTitle">Qualidade</h3>
+					</div>
+					<div class="panel-body">
+						<div class="row form-group">
+							<div class="col-xs-12 col-sm-12 col-md-8">
+								<label class="control-label" for="F1_responsavel">Responsável</label>
+								<input id="F1_responsavel" name="F1_responsavel" class="form-control" readonly>
+							</div>
+							<div class="col-xs-12 col-sm-12 col-md-4">
+								<label class="control-label" for="F2_data">Data</label>
+								<input id="F2_data" name="F2_data" class="form-control" readonly>
+							</div>
+						</div>
+
+						<div class="row form-group">
+							<div class="col-xs-12 col-sm-12 col-md-3">
+								<label class="control-label" for="F3_codigo_gtin">Código GTIN</label>
+								<input id="F3_codigo_gtin" name="F3_codigo_gtin" class="form-control" maxlength="15">
+							</div>
+							<div class="col-xs-12 col-sm-12 col-md-3">
+								<label class="control-label required" for="F16_estado_fisico">Estado Físico</label>
+								<div class="radio">
+									<label>
+										<input type="radio" name="F16_estado_fisicoOp" id="F16_estado_fisico1" value="S">
+										Sólido
+									</label>
+								</div>
+								<div class="radio">
+									<label>
+										<input type="radio" name="F16_estado_fisicoOp" id="F16_estado_fisico2" value="L">
+										Líquido
+									</label>
+								</div>
+								<div class="radio">
+									<label>
+										<input type="radio" name="F16_estado_fisicoOp" id="F16_estado_fisico3" value="G">
+										Gasoso
+									</label>
+								</div>
+							</div>
+						</div>
+
+						<div class="row form-group">
+							<div class="col-xs-12 col-sm-12 col-md-3">
+								<label class="control-label required" for="F4_pos_ipi">Pos. IPI/NCM</label>
+								<div class="input-group">
+									<input type="text" id="F4_pos_ipi" name="F4_pos_ipi" class="form-control zoom-tdi" placeholder="Clique na lupa para pesquisar" />
+									<div id="btnPosIpiNcm" class="input-group-addon" style="cursor:pointer;" onclick="zoomPosIpiNcm(this.id.replace(/\D/g, ''));">
+										<span class="fluigicon fluigicon-zoom-in fluigicon-sm"></span>
+									</div>
+								</div>
+							</div>
+							<div class="col-xs-12 col-sm-12 col-md-3">
+								<label class="control-label required" for="F5_ex_ncm">Ex. NCM</label>
+								<div class="input-group">
+									<input type="text" id="F5_ex_ncm" name="F5_ex_ncm" class="form-control zoom-tdi" placeholder="Clique na lupa para pesquisar" />
+									<div id="btnExNcm" class="input-group-addon" style="cursor:pointer;" onclick="zoomExNcm(this.id.replace(/\D/g, ''));">
+										<span class="fluigicon fluigicon-zoom-in fluigicon-sm"></span>
+									</div>
+								</div>
+							</div>
+							<div class="col-xs-12 col-sm-12 col-md-3">
+								<label class="control-label" for="F6_nota_minima">Nota Mínima</label>
+								<input id="F6_nota_minima" name="F6_nota_minima" class="form-control" type="number" readonly>
+							</div>
+							<div class="col-xs-12 col-sm-12 col-md-3">
+								<label class="control-label required" for="F7_tipo_cq">Tipo de Controle Qualidade</label>
+								<div class="radio">
+									<label>
+										<input type="radio" name="F7_tipo_cqOp" id="F7_tipo_cq1" value="M"> Materiais
+									</label>
+								</div>
+								<div class="radio">
+									<label>
+										<input type="radio" name="F7_tipo_cqOp" id="F7_tipo_cqOp2" value="Q">
+										SigaQuality
+									</label>
+								</div>
+							</div>
+						</div>
+						<!-- <div class="row form-group">
+							<div class="col-xs-12 col-sm-12 col-md-2">
+								<button type="button" class="btn btn-success exibeDesc" data-target="#F_div_F9_desc_rot_ff_text" id="F8_desc_rot_ff" name="F8_desc_rot_ff" class="form-control">+ Descrição Rótulo F&F</button>
+							</div>
+						</div> -->
+						<div class="row form-group">
+							<div class="col-xs-12 col-sm-12 col-md-12" id="F_div_F9_desc_rot_ff_text">
+								<label class="control-label" for="F9_desc_rot_ff_text">Descrição Rótulo F&F</label>
+								<textarea class="form-control" rowspan="2" name="F9_desc_rot_ff_text" id="F9_desc_rot_ff_text" maxlength="100"></textarea>
+							</div>
+						</div>
+						<!-- Grupo 1 -->
+						<div class="row form-group">
+
+							<div class="col-md-4">
+								<label class="control-label required" for="F10_classificacao_prod">Classificação Indicação
+									Prod.</label>
+								<input id="F10_classificacao_prod" name="F10_classificacao_prod" class="form-control">
+							</div>
+							<div class="col-md-4">
+								<label class="control-label" for="F12_modo_uso">Modo de Uso</label>
+								<input id="F12_modo_uso" name="F12_modo_uso" class="form-control" maxlength="254">
+							</div>
+							<!-- Solicitado remoção do campo (duplicado) abaixo - MIT006 - Arcanjo ID178 -->
+							<!-- <div class="col-md-2">
+								<label class="control-label required" for="F11_dias_validade">Dias Validade</label>
+								<input type="number" id="F11_dias_validade" name="F11_dias_validade" class="form-control">
+							</div> -->
+							<!-- F13 - Espécie Dest. -->
+							<div class="col-md-4">
+								<label class="control-label required" for="F13_especie_dest">Espécie Dest.</label>
+								<div class="input-group">
+									<input type="text" id="F13_especie_dest" name="F13_especie_dest" class="form-control zoom-tdi" placeholder="Clique na lupa para pesquisar" />
+									<div id="btnEspecieDest2" class="input-group-addon" style="cursor:pointer;" onclick="zoomEspecieDest2(this.id.replace(/\D/g, ''));">
+										<span class="fluigicon fluigicon-zoom-in fluigicon-sm"></span>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="row form-group">
+							<!-- F18 - Control PF -->
+							<div class="col-md-2">
+								<label class="control-label required">Control PF</label>
+								<div class="radio">
+									<label><input type="radio" name="F18_control_pf" value="Sim"> Sim</label>
+									<label><input type="radio" name="F18_control_pf" value="Não"> Não</label>
+								</div>
+							</div>
+							<!-- F19 - Control PC -->
+							<div class="col-md-2">
+								<label class="control-label required">Control PC</label>
+								<div class="radio">
+									<label><input type="radio" name="F19_control_pc" value="Sim"> Sim</label>
+									<label><input type="radio" name="F19_control_pc" value="Não"> Não</label>
+								</div>
+							</div>
+							<!-- F20 - Control EX -->
+							<div class="col-md-2">
+								<label class="control-label required">Control EX</label>
+								<div class="radio">
+									<label><input type="radio" name="F20_control_ex" value="Sim"> Sim</label>
+									<label><input type="radio" name="F20_control_ex" value="Não"> Não</label>
+								</div>
+							</div>
+							<!-- F21 - Físic. PC -->
+							<div class="col-md-2">
+								<label class="control-label required">Fiscal. PC</label>
+								<div class="radio">
+									<label><input type="radio" name="F21_fisic_pc" value="Sim"> Sim</label>
+									<label><input type="radio" name="F21_fisic_pc" value="Não"> Não</label>
+								</div>
+							</div>
+							<div class="col-xs-12 col-sm-12 col-md-2">
+								<label class="control-label required" for="F30_uso_vet">Uso Vet?</label>
+								<div class="radio">
+									<label><input type="radio" name="F30_uso_vetOp" id="F30_uso_vet1" value="S">Sim</label>
+									<label> <input type="radio" name="F30_uso_vetOp" id="F30_uso_vet2" value="N">Não</label>
+								</div>
+							</div>
+							<div class="col-xs-12 col-sm-12 col-md-2">
+								<label class="control-label required" for="F31_controle_anvisa">Controle Anvisa</label>
+								<div class="radio">
+									<label> <input type="radio" name="F31_controle_anvisaOp" id="F31_controle_anvisa1" value="S">Sim</label>
+									<label><input type="radio" name="F31_controle_anvisaOp" id="F31_controle_anvisa2" value="N">Não</label>
+								</div>
+							</div>
+						</div>
+
+						<div class="row form-group">
+							<!-- //! SOLICITADO REMOCAO DO CAMPO - MIT006 - Marina // F22 - Concentração Prod. Controlado --> 
+							<!-- <div class="col-md-3">
+								<label class="control-label required" for="F22_concentracao_prod">Concentração Prod.
+									Controlado</label>
+								<input type="text" id="F22_concentracao_prod" name="F22_concentracao_prod" class="form-control" maxlength="30">
+							</div> -->
+							<!-- F58 - Concentração -->
+							<div class="col-xs-12 col-sm-12 col-md-4">
+								<label class="control-label" for="F58_concentracao">Concentração</label>
+								<input id="F58_concentracao" type="number" name="F58_concentracao" class="form-control" type="number">
+							</div>
+							<!-- F24 - Registro SIF -->
+							<div class="col-md-4">
+								<label class="control-label" for="F24_registro_sif">Registro SIF</label>
+								<input id="F24_registro_sif" name="F24_registro_sif" class="form-control" maxlength="60">
+							</div>
+							<!-- F25 - Número CAS -->
+							<div class="col-md-4">
+								<label class="control-label" for="F25_numero_cas">Número CAS</label>
+								<input type="text" id="F25_numero_cas" name="F25_numero_cas" class="form-control" maxlength="10" mask="0000-00-00">
+							</div>
+						</div>
+
+						<div class="row form-group">
+							<div class="col-md-3">
+								<label class="control-label" for="F26_codigo_dcb">Código DCB</label>
+								<div class="input-group">
+									<input type="text" id="F26_codigo_dcb" name="F26_codigo_dcb" class="form-control zoom-tdi" placeholder="Clique na lupa para pesquisar" />
+									<div id="btnCodigoDcb" class="input-group-addon" style="cursor:pointer;" onclick="zoomCodigoDcb(this.id.replace(/\D/g, ''));">
+										<span class="fluigicon fluigicon-zoom-in fluigicon-sm"></span>
+									</div>
+								</div>
+							</div>
+
+							<div class="col-md-3">
+								<label class="control-label" for="F27_aplicacao">Aplicação</label>
+								<input id="F27_aplicacao" name="F27_aplicacao" class="form-control" maxlength="20">
+							</div>
+							<div class="col-md-3">
+								<label class="control-label" for="F28_classe_familia_prd">Classe Família
+									Prod.</label>
+								<div class="input-group">
+									<input type="text" id="F28_classe_familia_prd" name="F28_classe_familia_prd" class="form-control zoom-tdi" placeholder="Clique na lupa para pesquisar" />
+									<div id="btnClasseFamPrd" class="input-group-addon" style="cursor:pointer;" onclick="zoomClasseFamPrd(this.id.replace(/\D/g, ''));">
+										<span class="fluigicon fluigicon-zoom-in fluigicon-sm"></span>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-3">
+								<label class="control-label" for="F29_resp_tecnico">Responsável Técnico</label>
+								<div class="input-group">
+									<input type="text" id="F29_resp_tecnico" name="F29_resp_tecnico" class="form-control zoom-tdi" placeholder="Clique na lupa para pesquisar" />
+									<div id="btnRespTecnic" class="input-group-addon" style="cursor:pointer;" onclick="zoomRespTecnic(this.id.replace(/\D/g, ''));">
+										<span class="fluigicon fluigicon-zoom-in fluigicon-sm"></span>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="row form-group">
+							<div class="col-xs-12 col-sm-12 col-md-6">
+								<label class="control-label required" for="F32_rotulos_especiais">Rótulos Especiais
+									F&F</label>
+								<input id="F32_rotulos_especiais" name="F32_rotulos_especiais" class="form-control" maxlength="20">
+							</div>
+							<div class="col-xs-12 col-sm-12 col-md-6">
+								<label class="control-label required" for="F33_intrucao_operacional">Instrução Operacional
+									F&F</label>
+								<input id="F33_intrucao_operacional" name="F33_intrucao_operacional" class="form-control" maxlength="254">
+							</div>
+						</div>
+						<div class="row form-group">
+							<div class="col-xs-12 col-sm-12 col-md-6">
+								<label class="control-label" for="F34_codigo_IBAMA">Código IBAMA</label>
+								<div class="input-group">
+									<input type="text" id="F34_codigo_IBAMA" name="F34_codigo_IBAMA" class="form-control zoom-tdi" placeholder="Clique na lupa para pesquisar" />
+									<div id="btnCodigoIbama" class="input-group-addon" style="cursor:pointer;" onclick="zoomCodigoIbama(this.id.replace(/\D/g, ''));">
+										<span class="fluigicon fluigicon-zoom-in fluigicon-sm"></span>
+									</div>
+								</div>
+							</div>
+							<div class="col-xs-12 col-sm-12 col-md-2">
+								<label class="control-label required" for="F37_periculosidade">Periculosidade?</label>
+								<div class="radio">
+									<label>
+										<input type="radio" name="F37_periculosidadeOp" id="F37_periculosidade1" value="S">
+										Sim
+									</label>
+								</div>
+								<div class="radio">
+									<label>
+										<input type="radio" name="F37_periculosidadeOp" id="F37_periculosidade2" value="N">
+										Não
+									</label>
+								</div>
+							</div>
+							<div class="col-xs-12 col-sm-12 col-md-4">
+								<label class="control-label required" for="F39_obs_periculosidade">Observação da
+									Periculosidade</label>
+								<input id="F39_obs_periculosidade" name="F39_obs_periculosidade" class="form-control" maxlength="254">
+							</div>
+						</div>
+						<div class="row form-group">
+
+							<div class="col-xs-12 col-sm-12 col-md-1">
+								<label class="control-label required" for="F38_mat_embalagem">Mat. Embalagem</label>
+								<div class="radio">
+									<label>
+										<input type="radio" name="F38_mat_embalagemOp" id="F38_mat_embalagem1" value="1">
+										Papel
+									</label>
+								</div>
+								<div class="radio">
+									<label>
+										<input type="radio" name="F38_mat_embalagemOp" id="F38_mat_embalagem2" value="2">
+										Metal
+									</label>
+								</div>
+								<div class="radio">
+									<label>
+										<input type="radio" name="F38_mat_embalagemOp" id="F38_mat_embalagem3" value="3">
+										Plástico
+									</label>
+								</div>
+								<div class="radio">
+									<label>
+										<input type="radio" name="F38_mat_embalagemOp" id="F38_mat_embalagem4" value="9">
+										Outros
+									</label>
+								</div>
+							</div>
+							<div class="col-xs-12 col-sm-12 col-md-2">
+								<label class="control-label required" for="F40_origem_prd">Origem Produto</label>
+								<div class="radio">
+									<label>
+										<input type="radio" name="F40_origem_prdOp" id="F40_origem_prd1" value="1"> Animal
+									</label>
+								</div>
+								<div class="radio">
+									<label>
+										<input type="radio" name="F40_origem_prdOp" id="F40_origem_prd2" value="2"> Vegetal
+									</label>
+								</div>
+								<div class="radio">
+									<label>
+										<input type="radio" name="F40_origem_prdOp" id="F40_origem_prd3" value="3"> Outros
+									</label>
+								</div>
+							</div>
+							<div class="col-md-3">
+								<label class="control-label required" for="F42_color_imp">Color (IMP)</label>
+								<input id="F42_color_imp" name="F42_color_imp" class="form-control" maxlength="50">
+							</div>
+							<div class="col-md-6">
+								<label class="control-label" for="F43_classe_imp">Classe (IMP)</label>
+								<div class="input-group">
+									<input type="text" id="F43_classe_imp" name="F43_classe_imp" class="form-control zoom-tdi" placeholder="Clique na lupa para pesquisar" />
+									<div id="btnClasseImp" class="input-group-addon" style="cursor:pointer;" onclick="zoomClasseImp(this.id.replace(/\D/g, ''));">
+										<span class="fluigicon fluigicon-zoom-in fluigicon-sm"></span>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="row form-group">
+
+							<div class="col-md-3">
+								<label class="control-label" for="F44_grau_pureza">% Grau Pureza</label>
+								<input type="number" id="F44_grau_pureza" name="F44_grau_pureza" class="form-control">
+							</div>
+
+							<div class="col-md-3">
+								<label class="control-label" for="F45_processo_obtencao">Processo Obtenção</label>
+								<div class="input-group">
+									<input type="text" id="F45_processo_obtencao" name="F45_processo_obtencao" class="form-control zoom-tdi" placeholder="Clique na lupa para pesquisar" />
+									<div id="btnProcObtencao" class="input-group-addon" style="cursor:pointer;" onclick="zoomProcObtencao(this.id.replace(/\D/g, ''));">
+										<span class="fluigicon fluigicon-zoom-in fluigicon-sm"></span>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-3">
+								<label class="control-label" for="F46_aplicacao_imp">Aplicação (IMP)</label>
+								<div class="input-group">
+									<input type="text" id="F46_aplicacao_imp" name="F46_aplicacao_imp" class="form-control zoom-tdi" placeholder="Clique na lupa para pesquisar" />
+									<div id="btnAplicacaoImp" class="input-group-addon" style="cursor:pointer;" onclick="zoomAplicacaoImp(this.id.replace(/\D/g, ''));">
+										<span class="fluigicon fluigicon-zoom-in fluigicon-sm"></span>
+									</div>
+								</div>
+							</div>
+							<!-- F13 - Espécie Dest. -->
+							<div class="col-md-3">
+								<label class="control-label" for="F47_finalidade">Finalidade</label>
+								<div class="input-group">
+									<input type="text" id="F47_finalidade" name="F47_finalidade" class="form-control zoom-tdi" placeholder="Clique na lupa para pesquisar" />
+									<div id="btnFinalizade2" class="input-group-addon" style="cursor:pointer;" onclick="zoomFinalidade2(this.id.replace(/\D/g, ''));">
+										<span class="fluigicon fluigicon-zoom-in fluigicon-sm"></span>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="row form-group">
+
+							<div class="col-md-3">
+								<label class="control-label" for="F48_forma_molecular">Fórmula Molecular</label>
+								<input id="F48_forma_molecular" name="F48_forma_molecular" class="form-control" maxlength="50">
+							</div>
+							<div class="col-md-6">
+								<label class="control-label" for="F50_condicao_armz">Condição de
+									Armazenagem</label>
+								<div class="input-group">
+									<input type="text" id="F50_condicao_armz" name="F50_condicao_armz" class="form-control zoom-tdi" placeholder="Clique na lupa para pesquisar" />
+									<div id="btnCondArmazenagem" class="input-group-addon" style="cursor:pointer;" onclick="zoomCondArmazenagem(this.id.replace(/\D/g, ''));">
+										<span class="fluigicon fluigicon-zoom-in fluigicon-sm"></span>
+									</div>
+								</div>
+							</div>
+							<div class="col-xs-12 col-sm-12 col-md-3">
+								<label class="control-label required" for="F49_prd_or_gmo">Prod. Or GMO?</label>
+								<div class="radio">
+									<label>
+										<input type="radio" name="F49_prd_or_gmoOp" id="F49_prd_or_gmo1" value="S"> Sim
+									</label>
+								</div>
+								<div class="radio">
+									<label>
+										<input type="radio" name="F49_prd_or_gmoOp" id="F49_prd_or_gmo2" value="N"> Não
+									</label>
+								</div>
+							</div>
+						</div>
+						<div class="row form-group">
+
+							<div class="col-md-3">
+								<label class="control-label" for="F52_nome_cient_rotulo">Nome Científico no
+									Rótulo</label>
+								<input id="F52_nome_cient_rotulo" name="F52_nome_cient_rotulo" class="form-control" maxlength="254">
+							</div>
+
+							<div class="col-md-3">
+								<label class="control-label" for="F53_especie_doadora_premix">Espécie Doadora
+									Premix</label>
+								<input id="F53_especie_doadora_premix" name="F53_especie_doadora_premix" class="form-control" maxlength="254">
+							</div>
+							<div class="col-md-3">
+								<label class="control-label" for="F54_desc_qualidade">Descrição da
+									Qualidade</label>
+								<input id="F54_desc_qualidade" name="F54_desc_qualidade" class="form-control" maxlength="254">
+							</div>
+							<!-- F13 - Espécie Dest. -->
+							<div class="col-md-3">
+								<label class="control-label" for="F55_desc_aux_qualidade">Descrição Auxiliar da
+									Qualidade</label>
+								<input id="F55_desc_aux_qualidade" name="F55_desc_aux_qualidade" class="form-control" maxlength="254">
+							</div>
+						</div>
+						<!-- <div class="row form-group">
+							<div class="col-xs-12 col-sm-12 col-md-2">
+								<button type="button" class="btn btn-success exibeDesc" data-target="#F_div_F57_restricao_uso_txt" id="F56_restricao_uso" name="F56_restricao_uso" class="form-control">+ Restrição de Uso</button>
+							</div>
+						</div> -->
+						<div class="row form-group">
+							<div class="col-xs-12 col-sm-12 col-md-12" id="F_div_F57_restricao_uso_txt">
+								<label class="control-label" for="F57_restricao_uso_txt">Restrição de Uso</label>
+								<textarea class="form-control" rowspan="2" name="F57_restricao_uso_txt" id="F57_restricao_uso_txt" maxlength="100"></textarea>
+							</div>
+						</div>
+						<div class="row form-group">
+							<div class="col-xs-12 col-sm-12 col-md-12" id="F14_divSelecionaFoto">
+								<label class="control-label">Foto</label>
+								<br>
+								<br>
+								<button id="openModalF14" class="btn btn-success">Escolher
+									Foto</button>
+								<input type="hidden" name="F14_fotoHidden" id="F14_fotoHidden">
+								<input type="hidden" name="F14_fotoUrlHidden" id="F14_fotoUrlHidden">
+								<input type="hidden" name="F14_fotoDescHidden" id="F14_fotoDescHidden">
+							</div>
+						</div>
+						<div class="row form-group">
+							<div class="col-xs-12 col-sm-12 col-md-4">
+								<label class="control-label" for="F15_codigo_ean">Código EAN</label>
+								<input id="F15_codigo_ean" name="F15_codigo_ean" class="form-control" maxlength="2">
+							</div>
+							<div class="col-xs-12 col-sm-12 col-md-4">
+								<label class="control-label required" type="number" for="F59_densidade">Densidade</label>
+								<input id="F59_densidade" name="F59_densidade" class="form-control" type="number">
+							</div>
+							<div class="col-xs-12 col-sm-12 col-md-4">
+								<label class="control-label" for="F60_prazo_cq">Prazo de Controle de Qualidade</label>
+								<input class="form-control" name="F60_prazo_cq" id="F60_prazo_cq" type="number">
+							</div>
+						</div>
+						<div class="row form-group">
+							<div class="col-xs-12 col-sm-12 col-md-4">
+								<label class="control-label" for="F17_num_onu">N° ONU</label>
+								<div class="input-group">
+									<input type="text" id="F17_num_onu" name="F17_num_onu" class="form-control zoom-tdi" placeholder="Clique na lupa para pesquisar" />
+									<div id="btnOnu" class="input-group-addon" style="cursor:pointer;" onclick="zoomOnu(this.id.replace(/\D/g, ''));">
+										<span class="fluigicon fluigicon-zoom-in fluigicon-sm"></span>
+									</div>
+								</div>
+							</div>
+							<div class="col-xs-12 col-sm-12 col-md-4">
+								<label class="control-label" for="F87_quantidadeIsenta">Quantidade Isenta</label>
+								<input type="text" id="F87_quantidadeIsenta" name="F87_quantidadeIsenta" class="form-control" maxlength="4" mask="0000">
+							</div>
+							<div class="col-xs-12 col-sm-12 col-md-4">
+								<label class="control-label" for="F35_kit">Kit</label>
+								<input id="F35_kit" name="F35_kit" class="form-control" maxlength="10">
+							</div>
+						</div>
+						<div class="row form-group">
+							<div class="col-xs-12 col-sm-12 col-md-4">
+								<label class="control-label" for="F36_grupo_epi">Grupo EPI</label>
+								<input id="F36_grupo_epi" name="F36_grupo_epi" class="form-control" maxlength="10">
+							</div>
+							<div class="col-md-4">
+								<label class="control-label" for="F41_sub_classe_risco">Sub Classe Risco</label>
+								<input id="F41_sub_classe_risco" name="F41_sub_classe_risco" class="form-control" maxlength="5">
+							</div>
+							<!-- F23 - Prod. Incompatível -->
+							<div class="col-xs-12 col-sm-12 col-md-4">
+								<label class="control-label" for="F23_prod_incompativel">Prod. Incompatível</label>
+								<input id="F23_prod_incompativel" name="F23_prod_incompativel" class="form-control" maxlength="254">
+							</div>
+						</div>
+						<div class="row form-group">
+							<div class="col-xs-12 col-sm-12 col-md-4">
+								<label class="control-label" for="F67_descricao">Descrição</label>
+								<textarea rowspan="3" class="form-control" name="F67_descricao" id="F67_descricao" maxlength="90" readonly></textarea>
+							</div>
+							<div class="col-xs-12 col-sm-12 col-md-4">
+								<label class="control-label" for="F68_desc_ingles">Descrição Inglês</label>
+								<textarea rowspan="3" class="form-control" name="F68_desc_ingles" id="F68_desc_ingles" maxlength="90" readonly></textarea>
+							</div>
+							<div class="col-xs-12 col-sm-12 col-md-4">
+								<label class="control-label" for="F69_desc_espanhol">Descrição Espanhol</label>
+								<textarea rowspan="3" class="form-control" name="F69_desc_espanhol" id="F69_desc_espanhol" maxlength="90" readonly></textarea>
+							</div>
+						</div>
+						<div class="row form-group">
+							<div class="col-xs-12 col-sm-12 col-md-4">
+								<label class="control-label" for="F70_tipo">Tipo</label>
+								<input class="form-control" name="F70_tipo" id="F70_tipo" readonly>
+							</div>
+							<div class="col-xs-12 col-sm-12 col-md-4">
+								<label class="control-label" for="F71_un_medida">Unidade de Medida</label>
+								<input class="form-control" name="F71_un_medida" id="F71_un_medida" readonly>
+							</div>
+							<div class="col-xs-12 col-sm-12 col-md-4">
+								<label class="control-label required" for="F72_un_med_amostra">Unidade de Medida Amostra</label>
+								<div class="input-group">
+									<input type="text" id="F72_un_med_amostra" name="F72_un_med_amostra" class="form-control zoom-tdi" placeholder="Clique na lupa para pesquisar" />
+									<div id="btnUnMedAmostra" class="input-group-addon" style="cursor:pointer;" onclick="zoomUnMedAmostra(this.id.replace(/\D/g, ''));">
+										<span class="fluigicon fluigicon-zoom-in fluigicon-sm"></span>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="row form-group">
+							<div class="col-xs-12 col-sm-12 col-md-4">
+								<label class="control-label" for="F90_nomeProdutoFornecedor">Nome do Produto Fornecedor</label>
+								<input id="F90_nomeProdutoFornecedor" name="F90_nomeProdutoFornecedor" class="form-control" maxlength="90">
+							</div>
+							<div class="col-xs-12 col-sm-12 col-md-4">
+								<label class="control-label" for="F88_fatorConversao">Fator de Conversão</label>
+								<input  type="number" id="F88_fatorConversao" name="F88_fatorConversao" class="form-control">
+							</div>
+							<div class="col-xs-12 col-sm-12 col-md-4">
+								<label class="control-label" for="F89_tipoConversao">Tipo Conversão</label>
+								<div class="radio">
+									<label>
+										<input type="radio" name="F89_tipoConversao" id="F89_tipoConversao1" value="M">
+										Multiplicador
+									</label>
+								</div>
+								<div class="radio">
+									<label>
+										<input type="radio" name="F89_tipoConversao" id="F89_tipoConversao2" value="D">
+										Divisor
+									</label>
+								</div>
+							</div>
+						</div>
+						<div class="row form-group">
+							<div style="border-bottom: 1px solid #046A38;  margin-bottom: 15px;">
+								<h3 style="font-size: 12px!important; display: flex;align-items: center; color: #046A38;"><i
+										class="flaticon flaticon-edit-square icon-md" aria-hidden="true"></i>&nbsp;Ensaios</h3>
+							</div>
+							<table class="table" tablename="tbEnsaio" id="tbEnsaio" noaddbutton=true nodeletebutton="true" style="border: 0">
+								<thead style="display: none;">
+									<tr>
+										<th style="width: 5%;"></th>
+										<th style="width: 90%;"></th>
+										<th style="width: 5%;"></th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>
+											<label class="control-label" for="sequenciaEnsaioLabel">Seq.</label>
+											<br><span class="label label-success seqProduto" id="sequenciaEnsaioLabel"></span>
+											<input type="hidden" class="form-control" id="sequenciaEnsaio" name="sequenciaEnsaio" />
+										</td>
+										<td>
+											<div class="row form-group">
+												<div class="col-xs-12 col-sm-12 col-md-4">
+													<label class="control-label required" for="F73_ensaio">Ensaio</label>
+													<div class="input-group">
+														<input type="text" id="F73_ensaio" name="F73_ensaio" class="form-control zoom-tdi" placeholder="Clique na lupa para pesquisar" />
+														<div id="btnEnsaio" class="input-group-addon" style="cursor:pointer;" onclick="zoomEnsaio(this.id.replace(/\D/g, ''));">
+															<span class="fluigicon fluigicon-zoom-in fluigicon-sm"></span>
+														</div>
+													</div>
+												</div>
+												<input type="hidden" id="F73_ensaioHidden" name="F73_ensaioHidden">
+												<div class="col-xs-12 col-sm-12 col-md-4">
+													<label class="control-label" for="F74_desc_ensaio">Descrição Ensaio</label>
+													<input class="form-control" name="F74_desc_ensaio" id="F74_desc_ensaio">
+												</div>
+												<div class="col-xs-12 col-sm-12 col-md-4">
+													<label class="control-label required" for="F75_laboratorio">Laboratório</label>
+													<div class="input-group">
+														<input type="text" id="F75_laboratorio" name="F75_laboratorio" class="form-control zoom-tdi" placeholder="Clique na lupa para pesquisar" />
+														<div id="btnLaboratorio" class="input-group-addon" style="cursor:pointer;" onclick="zoomLaboratorio(this.id.replace(/\D/g, ''));">
+															<span class="fluigicon fluigicon-zoom-in fluigicon-sm"></span>
+														</div>
+													</div>
+												</div>
+												<input type="hidden" id="F75_laboratorioHidden" name="F75_laboratorioHidden">
+											</div>
+											<div class="row form-group">
+												<div class="col-xs-12 col-sm-12 col-md-3">
+													<label class="control-label required" for="F76_desc_laboratorio">Descrição
+														Laboratório</label>
+													<input class="form-control" name="F76_desc_laboratorio" id="F76_desc_laboratorio" readonly>
+												</div>
+												<div class="col-xs-12 col-sm-12 col-md-3">
+													<label class="control-label" for="F77_seq_labor">Sequência Laboratório</label>
+													<input class="form-control" name="F77_seq_labor" id="F77_seq_labor" type="text" readonly>
+												</div>
+												<div class="col-xs-12 col-sm-12 col-md-3">
+													<label class="control-label" for="F78_texto">Texto</label>
+													<input class="form-control" name="F78_texto" id="F78_texto" maxlength="100">
+												</div>
+											</div>
+										</td>
+										<td>
+											<button type="button" class="btn btn-delete trash-ensaio" onclick="fnWdkRemoveChild(this);calculaSequenciaLaboratorioEnsaio();" aria-label="Delete">
+												<i class="fas fa-trash-alt"></i>
+											</button>
+										</td>
+									</tr>
+								</tbody>
+								<tfoot>
+									<tr>
+										<td colspan="15">
+											<div class="custom-footer">
+												<div class="footer-actions">
+													<button type="button" class="btn btn-success" id="btnEnsaio" onclick="addNewTableRow('tbEnsaio')">Adicionar
+														Ensaio</button>
+												</div>
+											</div>
+										</td>
+									</tr>
+								</tfoot>
+							</table>
+						</div>
+						<div class="row form-group">
+							<div class="col-xs-12 col-sm-12 col-md-9">
+								<label class="control-label" for="F80_categoria_prd">Categoria Produto</label>
+								<div class="input-group">
+									<input type="text" id="F80_categoria_prd" name="F80_categoria_prd" class="form-control zoom-tdi" placeholder="Clique na lupa para pesquisar" />
+									<div id="btnCategoriaPrd" class="input-group-addon" style="cursor:pointer;" onclick="zoomCategoriaPrd(this.id.replace(/\D/g, ''));">
+										<span class="fluigicon fluigicon-zoom-in fluigicon-sm"></span>
+									</div>
+								</div>
+							</div>
+							<div class="col-xs-12 col-sm-12 col-md-3">
+								<label class="control-label" for="F81_convenio">Convênio</label>
+								<input class="form-control" name="F81_convenio" id="F81_convenio">
+							</div>
+						</div>
+						<div class="row form-group">
+							<div class="col-xs-12 col-sm-12 col-md-2">
+								<label class="control-label required" for="F82_prod_alergenico">Produto Alergênico?</label>
+								<div class="radio">
+									<label>
+										<input type="radio" name="F82_prod_alergenicoOp" id="F82_prod_alergenico1" value="S"> Sim
+									</label>
+								</div>
+								<div class="radio">
+									<label>
+										<input type="radio" name="F82_prod_alergenicoOp" id="F82_prod_alergenico2" value="N"> Não
+									</label>
+								</div>
+							</div>
+							<div class="col-xs-12 col-sm-12 col-md-10">
+								<label class="control-label" for="F83_mensagem_alergenico">Mensagem Alergênico</label>
+								<textarea rowspan="3" class="form-control" name="F83_mensagem_alergenico" id="F83_mensagem_alergenico"></textarea>
+							</div>
+						</div>
+						<div class="row form-group">
+							<div class="col-xs-12 col-sm-12 col-md-2">
+								<label class="control-label required">Decisão</label>
+								<div class="radio">
+									<label>
+										<input type="radio" name="F84_decisaoOpcoes" id="F84_decisao1" value="aprovado">
+										Aprovado
+									</label>
+								</div>
+								<div class="radio">
+									<label>
+										<input type="radio" name="F84_decisaoOpcoes" id="F84_decisao2" value="ajuste">
+										Retornar para Ajuste
+									</label>
+								</div>
+							</div>
+							<div class="col-xs-12 col-sm-12 col-md-2">
+								<label class="control-label">Retorno</label>
+								<div class="radio">
+									<label>
+										<input type="radio" name="F85_retornoOpcoes" id="F85_retorno1" value="solicitante">
+										Solicitante
+									</label>
+								</div>
+								<div class="radio">
+									<label>
+										<input type="radio" name="F85_retornoOpcoes" id="F85_retorno2" value="compras">
+										Compras
+									</label>
+								</div>
+								<div class="radio">
+									<label>
+										<input type="radio" name="F85_retornoOpcoes" id="F85_retorno3" value="tecnico">
+										Técnico
+									</label>
+								</div>
+							</div>
+							<div class="col-xs-12 col-sm-12 col-md-8">
+								<label class="control-label required" for="F86_justificativa">Justificativa</label>
+								<textarea id="F86_justificativa" name="F86_justificativa" class="form-control"></textarea>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- =================================================================================================== -->
+				<!-- Fiscal -->
+				<div id="G_divFiscal" class="panel customPanel">
+					<div class="panel-heading titulo-panel">
+						<h3 class="panel-title labelPanelTitle">Fiscal</h3>
+					</div>
+					<div class="panel-body">
+						<div class="row form-group">
+							<div class="col-xs-12 col-sm-12 col-md-8">
+								<label class="control-label" for="G1_responsavel">Responsável</label>
+								<input id="G1_responsavel" name="G1_responsavel" class="form-control" readonly>
+							</div>
+							<div class="col-xs-12 col-sm-12 col-md-4">
+								<label class="control-label" for="G2_data">Data</label>
+								<input id="G2_data" name="G2_data" class="form-control" readonly>
+							</div>
+						</div>
+						<div class="row form-group">
+							<div class="col-xs-12 col-sm-12 col-md-2">
+								<label class="control-label required" for="G3_aliqIpi">Alíq. IPI</label>
+								<input type="number" id="G3_aliqIpi" name="G3_aliqIpi" class="form-control">
+							</div>
+							<div class="col-xs-12 col-sm-12 col-md-4">
+								<label class="control-label required" for="G4_grupoTrib">Grupo Trib.</label>
+								<div class="input-group">
+									<input type="text" id="G4_grupoTrib" name="G4_grupoTrib" class="form-control zoom-tdi" placeholder="Clique na lupa para pesquisar" />
+									<div id="btnGrupoTrib" class="input-group-addon" style="cursor:pointer;" onclick="zoomGrupoTrib(this.id.replace(/\D/g, ''));">
+										<span class="fluigicon fluigicon-zoom-in fluigicon-sm"></span>
+									</div>
+								</div>
+							</div>
+							<div class="col-xs-12 col-sm-12 col-md-1">
+								<label class="control-label required">Impos. Renda</label>
+								<div class="radio">
+									<label>
+										<input type="radio" name="G5_impostoRendaOpcoes" id="G5_impostoRenda1" value="S">
+										Sim
+									</label>
+								</div>
+								<div class="radio">
+									<label>
+										<input type="radio" name="G5_impostoRendaOpcoes" id="G5_impostoRenda2" value="N">
+										Não
+									</label>
+								</div>
+							</div>
+							<div class="col-xs-12 col-sm-12 col-md-1">
+								<label class="control-label required">Calcula INSS</label>
+								<div class="radio">
+									<label>
+										<input type="radio" name="G6_calculaInssOpcoes" id="G6_calculaInss1" value="S"> Sim
+									</label>
+								</div>
+								<div class="radio">
+									<label>
+										<input type="radio" name="G6_calculaInssOpcoes" id="G6_calculaInss2" value="N"> Não
+									</label>
+								</div>
+							</div>
+							<div class="col-xs-12 col-sm-12 col-md-1">
+								<label class="control-label" for="G7_csll">%CSLL</label>
+								<input type="number" id="G7_csll" name="G7_csll" class="form-control">
+							</div>
+							<div class="col-xs-12 col-sm-12 col-md-1">
+								<label class="control-label" for="G8_cofins">%COFINS</label>
+								<input type="number" id="G8_cofins" name="G8_cofins" class="form-control">
+							</div>
+							<div class="col-xs-12 col-sm-12 col-md-1">
+								<label class="control-label" for="G9_pis">%PIS</label>
+								<input type="number" id="G9_pis" name="G9_pis" class="form-control">
+							</div>
+							<div class="col-xs-12 col-sm-12 col-md-1">
+								<label class="control-label required" for="G10_aliqIss">Alíq. ISS</label>
+								<input type="number" id="G10_aliqIss" name="G10_aliqIss" class="form-control">
+							</div>
+						</div>
+						<div class="row form-group">
+							<div class="col-xs-12 col-sm-12 col-md-4">
+								<label class="control-label required" for="G11_codServIss">Cód. Serv. ISS</label>
+								<div class="input-group">
+									<input type="text" id="G11_codServIss" name="G11_codServIss" class="form-control zoom-tdi" placeholder="Clique na lupa para pesquisar" />
+									<div id="btnCodServIss" class="input-group-addon" style="cursor:pointer;" onclick="zoomCodServIss(this.id.replace(/\D/g, ''));">
+										<span class="fluigicon fluigicon-zoom-in fluigicon-sm"></span>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="row form-group">
+							<div class="col-xs-12 col-sm-12 col-md-4">
+								<label class="control-label" for="G12_cest">CEST</label>
+								<div class="input-group">
+									<input type="text" id="G12_cest" name="G12_cest" class="form-control zoom-tdi" placeholder="Clique na lupa para pesquisar" />
+									<div id="btnCest" class="input-group-addon" style="cursor:pointer;" onclick="zoomCest(this.id.replace(/\D/g, ''));">
+										<span class="fluigicon fluigicon-zoom-in fluigicon-sm"></span>
+									</div>
+								</div>
+							</div>
+							<div class="col-xs-12 col-sm-12 col-md-2">
+								<label class="control-label required">Est. Créd. IPI</label>
+								<div class="radio">
+									<label>
+										<input type="radio" name="G13_estCredIpiOpcoes" id="G13_estCredIpi1" value="1"> M.P
+									</label>
+								</div>
+								<div class="radio">
+									<label>
+										<input type="radio" name="G13_estCredIpiOpcoes" id="G13_estCredIpi2" value="2"> P.A.
+									</label>
+								</div>
+								<div class="radio">
+									<label>
+										<input type="radio" name="G13_estCredIpiOpcoes" id="G13_estCredIpi3" value="3"> Não
+									</label>
+								</div>
+							</div>
+							<div class="col-xs-12 col-sm-12 col-md-2">
+								<label class="control-label required">ICMS 271</label>
+								<div class="radio">
+									<label>
+										<input type="radio" name="G14_icmsOpcoes" id="G14_icms1" value="0"> Sim
+									</label>
+								</div>
+								<div class="radio">
+									<label>
+										<input type="radio" name="G14_icmsOpcoes" id="G14_icms2" value="1"> Não
+									</label>
+								</div>
+							</div>
+							<div class="col-xs-12 col-sm-12 col-md-2">
+								<label class="control-label">Exe. Serviço</label>
+								<div class="radio">
+									<label>
+										<input type="radio" name="G15_exeServicoOpcoes" id="G15_exeServico1" value="EP"> EP
+									</label>
+								</div>
+								<div class="radio">
+									<label>
+										<input type="radio" name="G15_exeServicoOpcoes" id="G15_exeServico2" value="LES">
+										LES
+									</label>
+								</div>
+							</div>
+						</div>
+						<div class="row form-group">
+							<div class="col-xs-12 col-sm-12 col-md-4">
+								<label class="control-label" for="G16_tipoServico">Tipo de Serviço</label>
+								<div class="input-group">
+									<input type="text" id="G16_tipoServico" name="G16_tipoServico" class="form-control zoom-tdi" placeholder="Clique na lupa para pesquisar" />
+									<div id="btnTipoServico" class="input-group-addon" style="cursor:pointer;" onclick="zoomTipoServico(this.id.replace(/\D/g, ''));">
+										<span class="fluigicon fluigicon-zoom-in fluigicon-sm"></span>
+									</div>
+								</div>
+							</div>
+							<div class="col-xs-12 col-sm-12 col-md-4">
+								<label class="control-label" for="G17_subtitulo">Subtítulo </label>
+								<input id="G17_subtitulo" name="G17_subtitulo" class="form-control" maxlength="100">
+							</div>
+							<div class="col-xs-12 col-sm-12 col-md-4">
+								<label class="control-label" for="G18_nbs">NBS</label>
+								<div class="input-group">
+									<input type="text" id="G18_nbs" name="G18_nbs" class="form-control zoom-tdi" placeholder="Clique na lupa para pesquisar" />
+									<div id="btnNbs" class="input-group-addon" style="cursor:pointer;" onclick="zoomNbs(this.id.replace(/\D/g, ''));">
+										<span class="fluigicon fluigicon-zoom-in fluigicon-sm"></span>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- <div class="row form-group">
+							<div class="col-xs-12 col-sm-12 col-md-3">
+								<button type="button" class="btn btn-success exibeDesc" data-target="#G_div_G20_textDescServ" id="G19_mostrarDescServ" name="G19_mostrarDescServ" class="form-control">+ Descrição Serviço</button>
+							</div>
+						</div> -->
+						<div class="row form-group">
+							<div class="col-xs-12 col-sm-12 col-md-12" id="G_div_G20_textDescServ">
+								<label class="control-label" for="G20_textDescServ">Descrição Serviço</label>
+								<textarea id="G20_textDescServ" name="G20_textDescServ" class="form-control" maxlength="10"></textarea>
+							</div>
+						</div>
+						<div class="row form-group">
+							<div class="col-xs-12 col-sm-12 col-md-2">
+								<label class="control-label required">Decisão</label>
+								<div class="radio">
+									<label>
+										<input type="radio" name="G21_decisaoOpcoes" id="G21_decisao1" value="aprovado">
+										Aprovado
+									</label>
+								</div>
+								<div class="radio">
+									<label>
+										<input type="radio" name="G21_decisaoOpcoes" id="G21_decisao2" value="ajuste">
+										Retornar para Ajuste
+									</label>
+								</div>
+							</div>
+							<div class="col-xs-12 col-sm-12 col-md-2">
+								<label class="control-label">Retorno</label>
+								<div class="radio">
+									<label>
+										<input type="radio" name="G22_retornoOpcoes" id="G22_retorno1" value="solicitante">
+										Solicitante
+									</label>
+								</div>
+								<div class="radio">
+									<label>
+										<input type="radio" name="G22_retornoOpcoes" id="G22_retorno2" value="compras">
+										Compras
+									</label>
+								</div>
+								<div class="radio">
+									<label>
+										<input type="radio" name="G22_retornoOpcoes" id="G22_retorno3" value="tecnico">
+										Técnico
+									</label>
+								</div>
+								<div class="radio">
+									<label>
+										<input type="radio" name="G22_retornoOpcoes" id="G22_retorno4" value="qualidade">
+										Qualidade
+									</label>
+								</div>
+							</div>
+							<div class="col-xs-12 col-sm-12 col-md-8">
+								<label class="control-label required" for="G23_justificativa">Justificativa</label>
+								<textarea id="G23_justificativa" name="G23_justificativa" class="form-control"></textarea>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- =================================================================================================== -->
+				<!-- COMEX -->
+				<div id="H_divComex" class="panel customPanel">
+					<div class="panel-heading titulo-panel">
+						<h3 class="panel-title labelPanelTitle">COMEX</h3>
+					</div>
+					<div class="panel-body">
+						<div class="row form-group">
+							<div class="col-xs-12 col-sm-12 col-md-8">
+								<label class="control-label" for="H1_responsavel">Responsável</label>
+								<input id="H1_responsavel" name="H1_responsavel" class="form-control" readonly>
+							</div>
+							<div class="col-xs-12 col-sm-12 col-md-4">
+								<label class="control-label" for="H2_data">Data</label>
+								<input id="H2_data" name="H2_data" class="form-control" readonly>
+							</div>
+						</div>
+						<div class="row form-group">
+							<div class="col-xs-12 col-sm-12 col-md-7">
+								<label class="control-label" for="H3_nomeCientif">Nome Científ. </label>
+								<input id="H3_nomeCientif" name="H3_nomeCientif" class="form-control" maxlength="200">
+							</div>
+							<div class="col-xs-12 col-sm-12 col-md-5">
+								<label class="control-label">Anuente</label>
+								<div class="radio">
+									<label>
+										<input type="radio" name="H5_anuenteOpcoes" id="H5_anuente1" value="1"> Sim
+									</label>
+								</div>
+								<div class="radio">
+									<label>
+										<input type="radio" name="H5_anuenteOpcoes" id="H5_anuente2" value="2"> Não
+									</label>
+								</div>
+							</div>
+						</div>
+						<div class="row form-group">
+							<div class="col-xs-12 col-sm-12 col-md-5">
+								<label class="control-label">Desp. Import </label>
+								<div class="radio">
+									<label>
+										<input type="radio" name="H4_despImportOpcoes" id="H4_despImport1" value="S"> Sim
+									</label>
+								</div>
+								<div class="radio">
+									<label>
+										<input type="radio" name="H4_despImportOpcoes" id="H4_despImport2" value="N"> Não
+									</label>
+								</div>
+							</div>
+						</div>
+						<div class="row form-group">
+							<div class="col-xs-12 col-sm-12 col-md-4">
+								<label class="control-label" for="H6_descIngles">Descrição Inglês</label>
+								<textarea id="H6_descIngles" name="H6_descIngles" class="form-control" maxlength="100"></textarea>
+							</div>
+							<div class="col-xs-12 col-sm-12 col-md-4">
+								<label class="control-label" for="H7_descLi">Descrição LI</label>
+								<textarea id="H7_descLi" name="H7_descLi" class="form-control" maxlength="100"></textarea>
+							</div>
+							<div class="col-xs-12 col-sm-12 col-md-4">
+								<label class="control-label" for="H8_descPortg">Descrição Português</label>
+								<textarea id="H8_descPortg" name="H8_descPortg" class="form-control" maxlength="100"></textarea>
+							</div>
+						</div>
+
+						<div class="row form-group">
+							<div class="col-xs-12 col-sm-12 col-md-2">
+								<label class="control-label required">Decisão</label>
+								<div class="radio">
+									<label>
+										<input type="radio" name="H9_decisaoOpcoes" id="H9_decisao1" value="aprovado">
+										Aprovado
+									</label>
+								</div>
+								<div class="radio">
+									<label>
+										<input type="radio" name="H9_decisaoOpcoes" id="H9_decisao2" value="ajuste">
+										Retornar para Ajuste
+									</label>
+								</div>
+							</div>
+							<div class="col-xs-12 col-sm-12 col-md-2">
+								<label class="control-label">Retorno</label>
+								<div class="radio">
+									<label>
+										<input type="radio" name="H10_retornoOpcoes" id="H10_retorno1" value="solicitante">
+										Solicitante
+									</label>
+								</div>
+								<div class="radio">
+									<label>
+										<input type="radio" name="H10_retornoOpcoes" id="H10_retorno2" value="compras">
+										Compras
+									</label>
+								</div>
+								<div class="radio">
+									<label>
+										<input type="radio" name="H10_retornoOpcoes" id="H10_retorno3" value="tecnico">
+										Técnico
+									</label>
+								</div>
+								<div class="radio">
+									<label>
+										<input type="radio" name="H10_retornoOpcoes" id="H10_retorno4" value="qualidade">
+										Qualidade
+									</label>
+								</div>
+								<div class="radio">
+									<label>
+										<input type="radio" name="H10_retornoOpcoes" id="H10_retorno5" value="fiscal">
+										Fiscal
+									</label>
+								</div>
+							</div>
+							<div class="col-xs-12 col-sm-12 col-md-8">
+								<label class="control-label required" for="H11_justificativa">Justificativa</label>
+								<textarea id="H11_justificativa" name="H11_justificativa" class="form-control"></textarea>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- =================================================================================================== -->
+				<!-- Contábil -->
+				<div id="I_divContabil" class="panel customPanel">
+					<div class="panel-heading titulo-panel">
+						<h3 class="panel-title labelPanelTitle">Contábil</h3>
+					</div>
+					<div class="panel-body">
+						<div class="row form-group">
+							<div class="col-xs-12 col-sm-12 col-md-8">
+								<label class="control-label" for="I1_responsavel">Responsável</label>
+								<input id="I1_responsavel" name="I1_responsavel" class="form-control" readonly>
+							</div>
+							<div class="col-xs-12 col-sm-12 col-md-4">
+								<label class="control-label" for="I2_data">Data</label>
+								<input id="I2_data" name="I2_data" class="form-control" readonly>
+							</div>
+						</div>
+						<div class="row form-group">
+							<div class="col-xs-12 col-sm-12 col-md-4">
+								<label class="control-label required" for="I3_contaContabil">Conta Contábil </label>
+								<div class="input-group">
+									<input type="text" id="I3_contaContabil" name="I3_contaContabil" class="form-control zoom-tdi" placeholder="Clique na lupa para pesquisar" />
+									<div id="btnContaContabil" class="input-group-addon" style="cursor:pointer;" onclick="zoomContaContabil(this.id.replace(/\D/g, ''));">
+										<span class="fluigicon fluigicon-zoom-in fluigicon-sm"></span>
+									</div>
+								</div>
+							</div>
+							<div class="col-xs-12 col-sm-12 col-md-4">
+								<label class="control-label" for="I4_itemConta">Item Conta</label>
+								<div class="input-group">
+									<input type="text" id="I4_itemConta" name="I4_itemConta" class="form-control zoom-tdi" placeholder="Clique na lupa para pesquisar" />
+									<div id="btnItemConta" class="input-group-addon" style="cursor:pointer;" onclick="zoomItemConta(this.id.replace(/\D/g, ''));">
+										<span class="fluigicon fluigicon-zoom-in fluigicon-sm"></span>
+									</div>
+								</div>
+							</div>
+							<div class="col-xs-12 col-sm-12 col-md-4">
+								<label class="control-label" for="I5_classeValor">Classe Valor</label>
+								<div class="input-group">
+									<input type="text" id="I5_classeValor" name="I5_classeValor" class="form-control zoom-tdi" placeholder="Clique na lupa para pesquisar" />
+									<div id="btnClasseValor" class="input-group-addon" style="cursor:pointer;" onclick="zoomClasseValor(this.id.replace(/\D/g, ''));">
+										<span class="fluigicon fluigicon-zoom-in fluigicon-sm"></span>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="row form-group">
+							<div class="col-xs-12 col-sm-12 col-md-4">
+								<label class="control-label required">Decisão</label>
+								<div class="radio">
+									<label>
+										<input type="radio" name="I7_decisaoOpcoes" id="I7_decisao1" value="aprovado">
+										Aprovado
+									</label>
+								</div>
+								<div class="radio">
+									<label>
+										<input type="radio" name="I7_decisaoOpcoes" id="I7_decisao2" value="ajuste"> Ajuste
+										Solicitante
+									</label>
+								</div>
+							</div>
+							<div class="col-xs-12 col-sm-12 col-md-8">
+								<label class="control-label required" for="I8_justificativa">Justificativa</label>
+								<textarea id="I8_justificativa" name="I8_justificativa" class="form-control"></textarea>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- =================================================================================================== -->
+				<!-- Custos -->
+				<div id="J_divCustos" class="panel customPanel">
+					<div class="panel-heading titulo-panel">
+						<h3 class="panel-title labelPanelTitle">Custos</h3>
+					</div>
+					<div class="panel-body">
+						<div class="row form-group">
+							<div class="col-xs-12 col-sm-12 col-md-8">
+								<label class="control-label" for="J1_responsavel">Responsável</label>
+								<input id="J1_responsavel" name="J1_responsavel" class="form-control" readonly>
+							</div>
+							<div class="col-xs-12 col-sm-12 col-md-4">
+								<label class="control-label" for="J2_data">Data</label>
+								<input id="J2_data" name="J2_data" class="form-control" readonly>
+							</div>
+						</div>
+						<div class="row form-group">
+							<div class="col-xs-12 col-sm-12 col-md-4">
+								<label class="control-label" for="J3_moeda">Moeda</label>
+								<div class="input-group">
+									<div class="radio">
+										<label>
+											<input type="radio" name="J3_moeda" id="J3_moedaOp1" value="1"> Moeda 1
+										</label>
+									</div>
+									<div class="radio">
+										<label>
+											<input type="radio" name="J3_moeda" id="J3_moedaOp2" value="2"> Moeda 2
+										</label>
+									</div>
+									<div class="radio">
+										<label>
+											<input type="radio" name="J3_moeda" id="J3_moedaOp3" value="3"> Moeda 3
+										</label>
+									</div>
+									<div class="radio">
+										<label>
+											<input type="radio" name="J3_moeda" id="J3_moedaOp4" value="4"> Moeda 4
+										</label>
+									</div>
+									<div class="radio">
+										<label>
+											<input type="radio" name="J3_moeda" id="J3_moedaOp5" value="5"> Moeda 5
+										</label>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="row form-group">
+							<div class="col-xs-12 col-sm-12 col-md-4">
+								<label class="control-label required" for="J4_contaOrcament">Conta Orçamentária </label>
+								<div class="input-group">
+									<input type="text" id="J4_contaOrcament" name="J4_contaOrcament" class="form-control zoom-tdi" placeholder="Clique na lupa para pesquisar" />
+									<div id="btnContaOrcament" class="input-group-addon" style="cursor:pointer;" onclick="zoomContaOrcament(this.id.replace(/\D/g, ''));">
+										<span class="fluigicon fluigicon-zoom-in fluigicon-sm"></span>
+									</div>
+								</div>
+							</div>
+							<div class="col-xs-12 col-sm-12 col-md-3">
+								<label class="control-label required">Ex.Risc.Camb.</label>
+								<div class="radio">
+									<label>
+										<input type="radio" name="J5_exRiscCambOpcoes" id="J5_exRiscCamb1" value="S"> Sim
+									</label>
+								</div>
+								<div class="radio">
+									<label>
+										<input type="radio" name="J5_exRiscCambOpcoes" id="J5_exRiscCamb2" value="N"> Não
+									</label>
+								</div>
+							</div>
+							<div class="col-xs-12 col-sm-12 col-md-3">
+								<label class="control-label" for="J6_varCambial">%Var Cambial</label>
+								<input id="J6_varCambial" name="J6_varCambial" class="form-control" type="number">
+							</div>
+						</div>
+						<div class="row form-group">
+							<div class="col-xs-12 col-sm-12 col-md-4">
+								<label class="control-label required">Decisão</label>
+								<div class="radio">
+									<label>
+										<input type="radio" name="J7_decisaoOpcoes" id="J7_decisao1" value="aprovado">
+										Aprovado
+									</label>
+								</div>
+								<div class="radio">
+									<label>
+										<input type="radio" name="J7_decisaoOpcoes" id="J7_decisao2" value="ajuste"> Ajuste
+										Solicitante
+									</label>
+								</div>
+							</div>
+							<div class="col-xs-12 col-sm-12 col-md-8">
+								<label class="control-label required" for="J8_justificativa">Justificativa</label>
+								<textarea id="J8_justificativa" name="J8_justificativa" class="form-control"></textarea>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- =================================================================================================== -->
+				<!-- Logística -->
+				<div id="K_divLogistica" class="panel customPanel">
+					<div class="panel-heading titulo-panel">
+						<h3 class="panel-title labelPanelTitle">Logística</h3>
+					</div>
+					<div class="panel-body">
+						<div class="row form-group">
+							<div class="col-xs-12 col-sm-12 col-md-8">
+								<label class="control-label" for="K1_responsavel">Responsável</label>
+								<input id="K1_responsavel" name="K1_responsavel" class="form-control" readonly>
+							</div>
+							<div class="col-xs-12 col-sm-12 col-md-4">
+								<label class="control-label" for="K2_data">Data</label>
+								<input id="K2_data" name="K2_data" class="form-control" readonly>
+							</div>
+						</div>
+						<div class="row form-group">
+							<div class="col-xs-12 col-sm-12 col-md-3">
+								<label class="control-label required" for="K3_tipoConversao">Tipo Conversão</label>
+								<div class="radio">
+									<label>
+										<input type="radio" name="K3_tipoConversao" id="K3_tipoConversao1" value="M">
+										Multiplicador
+									</label>
+								</div>
+								<div class="radio">
+									<label>
+										<input type="radio" name="K3_tipoConversao" id="K3_tipoConversao2" value="D">
+										Divisor
+									</label>
+								</div>
+							</div>
+							<div class="col-xs-12 col-sm-12 col-md-2">
+								<label class="control-label">Controle WMS</label>
+								<div class="radio">
+									<label>
+										<input type="radio" name="K4_wmsOpcoes" id="K4_wms1" value="1"> Sim
+									</label>
+								</div>
+								<div class="radio">
+									<label>
+										<input type="radio" name="K4_wmsOpcoes" id="K4_wms2" value="2"> Não
+									</label>
+								</div>
+							</div>
+							<div class="col-xs-12 col-sm-12 col-md-2">
+								<label class="control-label">Controle Endereço</label>
+								<div class="radio">
+									<label>
+										<input type="radio" name="K5_enderecoOpcoes" id="K5_endereco1" value="1"> Sim
+									</label>
+								</div>
+								<div class="radio">
+									<label>
+										<input type="radio" name="K5_enderecoOpcoes" id="K5_endereco2" value="2"> Não
+									</label>
+								</div>
+							</div>
+						</div>
+						<div class="row form-group">
+							<div class="col-xs-12 col-sm-12 col-md-2" style="display: none;">
+								<label class="control-label">Armazena Drive?</label>
+								<div class="radio">
+									<label>
+										<input type="radio" name="K6_armDriveOpcoes" id="K6_armDrive1" value="S"> Sim
+									</label>
+								</div>
+								<div class="radio">
+									<label>
+										<input type="radio" name="K6_armDriveOpcoes" id="K6_armDrive2" value="N"> Não
+									</label>
+								</div>
+							</div>
+							<div class="col-xs-12 col-sm-12 col-md-2">
+								<label class="control-label" for="K7_largura">Largura</label>
+								<input type="number" id="K7_largura" name="K7_largura" class="form-control">
+							</div>
+							<div class="col-xs-12 col-sm-12 col-md-2">
+								<label class="control-label" for="K8_comprimento">Comprimento</label>
+								<input type="number" id="K8_comprimento" name="K8_comprimento" class="form-control">
+							</div>
+							<div class="col-xs-12 col-sm-12 col-md-2">
+								<label class="control-label" for="K9_altura">Altura</label>
+								<input type="number" id="K9_altura" name="K9_altura" class="form-control">
+							</div>
+							<div class="col-xs-12 col-sm-12 col-md-6">
+								<label class="control-label" for="K18_endereco_entrada">Endereço de Entrada</label>
+								<div class="input-group">
+									<input type="text" id="K18_endereco_entrada" name="K18_endereco_entrada" class="form-control zoom-tdi" placeholder="Clique na lupa para pesquisar" />
+									<div id="btnEndSaida" class="input-group-addon" style="cursor:pointer;" onclick="zoomEndEntrada(this.id.replace(/\D/g, ''));">
+										<span class="fluigicon fluigicon-zoom-in fluigicon-sm"></span>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="row form-group">
+							<div class="col-xs-12 col-sm-12 col-md-3">
+								<label class="control-label" for="K10_zonaArmaz">Zona Armazenagem</label>
+								<div class="input-group">
+									<input type="text" id="K10_zonaArmaz" name="K10_zonaArmaz" class="form-control zoom-tdi" placeholder="Clique na lupa para pesquisar" />
+									<div id="btnZonaArmaz" class="input-group-addon" style="cursor:pointer;" onclick="zoomZonaArmaz(this.id.replace(/\D/g, ''));">
+										<span class="fluigicon fluigicon-zoom-in fluigicon-sm"></span>
+									</div>
+								</div>
+							</div>
+							<div class="col-xs-12 col-sm-12 col-md-3">
+								<label class="control-label required" for="K11_servEntr">Serv. Entrada</label>
+								<div class="input-group">
+									<input type="text" id="K11_servEntr" name="K11_servEntr" class="form-control zoom-tdi" placeholder="Clique na lupa para pesquisar" />
+									<div id="btnServEntr" class="input-group-addon" style="cursor:pointer;" onclick="zoomServEntr(this.id.replace(/\D/g, ''));">
+										<span class="fluigicon fluigicon-zoom-in fluigicon-sm"></span>
+									</div>
+								</div>
+							</div>
+							<div class="col-xs-12 col-sm-12 col-md-3">
+								<label class="control-label" for="K12_servTrans">Serv. Transf.</label>
+								<div class="input-group">
+									<input type="text" id="K12_servTrans" name="K12_servTrans" class="form-control zoom-tdi" placeholder="Clique na lupa para pesquisar" />
+									<div id="btnServTrans" class="input-group-addon" style="cursor:pointer;" onclick="zoomServTrans(this.id.replace(/\D/g, ''));">
+										<span class="fluigicon fluigicon-zoom-in fluigicon-sm"></span>
+									</div>
+								</div>
+							</div>
+							<div class="col-xs-12 col-sm-12 col-md-3">
+								<label class="control-label" for="K13_servSaida">Serv. Saída</label>
+								<div class="input-group">
+									<input type="text" id="K13_servSaida" name="K13_servSaida" class="form-control zoom-tdi" placeholder="Clique na lupa para pesquisar" />
+									<div id="btnServSaida" class="input-group-addon" style="cursor:pointer;" onclick="zoomServSaida(this.id.replace(/\D/g, ''));">
+										<span class="fluigicon fluigicon-zoom-in fluigicon-sm"></span>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="row form-group">
+							<div class="col-xs-12 col-sm-12 col-md-3">
+								<label class="control-label">Pulmão</label>
+								<div class="radio">
+									<label>
+										<input type="radio" name="K14_pulmaoOpcoes" id="K14_pulmao1" value="S"> Sim
+									</label>
+								</div>
+								<div class="radio">
+									<label>
+										<input type="radio" name="K14_pulmaoOpcoes" id="K14_pulmao2" value="N"> Não
+									</label>
+								</div>
+							</div>
+							<div class="col-xs-12 col-sm-12 col-md-3">
+								<label class="control-label" for="K15_servEmb">Serviço/Emb.</label>
+								<div class="input-group">
+									<input type="text" id="K15_servEmb" name="K15_servEmb" class="form-control zoom-tdi" placeholder="Clique na lupa para pesquisar" />
+									<div id="btnServEmb" class="input-group-addon" style="cursor:pointer;" onclick="zoomServEmb(this.id.replace(/\D/g, ''));">
+										<span class="fluigicon fluigicon-zoom-in fluigicon-sm"></span>
+									</div>
+								</div>
+							</div>
+							<div class="col-xs-12 col-sm-12 col-md-3">
+								<label class="control-label" for="K16_endSaida">Endereço Saída</label>
+								<div class="input-group">
+									<input type="text" id="K16_endSaida" name="K16_endSaida" class="form-control zoom-tdi" placeholder="Clique na lupa para pesquisar" />
+									<div id="btnEndSaida" class="input-group-addon" style="cursor:pointer;" onclick="zoomEndSaida(this.id.replace(/\D/g, ''));">
+										<span class="fluigicon fluigicon-zoom-in fluigicon-sm"></span>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="row form-group">
+							<div class="col-xs-12 col-sm-12 col-md-4">
+								<label class="control-label required">Decisão</label>
+								<div class="radio">
+									<label>
+										<input type="radio" name="K16_decisaoOpcoes" id="K16_decisao1" value="aprovado">
+										Aprovado
+									</label>
+								</div>
+								<div class="radio">
+									<label>
+										<input type="radio" name="K16_decisaoOpcoes" id="K16_decisao2" value="comercial">
+										Ajuste Comercial
+									</label>
+								</div>
+								<div class="radio">
+									<label>
+										<input type="radio" name="K16_decisaoOpcoes" id="K16_decisao2" value="qualidade">
+										Ajuste Qualidade
+									</label>
+								</div>
+							</div>
+							<div class="col-xs-12 col-sm-12 col-md-8">
+								<label class="control-label required" for="K17_justificativa">Justificativa</label>
+								<textarea id="K17_justificativa" name="K17_justificativa" class="form-control"></textarea>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- =================================================================================================== -->
+				<!-- Planejamento -->
+				<div id="L_divPlanejamento" class="panel customPanel">
+					<div class="panel-heading titulo-panel">
+						<h3 class="panel-title labelPanelTitle">Planejamento</h3>
+					</div>
+					<div class="panel-body">
+						<!-- Linha 1: Responsável e Data -->
+						<div class="row form-group">
+							<div class="col-xs-12 col-sm-6 col-md-8">
+								<label class="control-label" for="L1_responsavel">Responsável</label>
+								<input id="L1_responsavel" name="L1_responsavel" class="form-control" type="text" readonly>
+							</div>
+							<div class="col-xs-12 col-sm-6 col-md-4">
+								<label class="control-label" for="L2_data">Data</label>
+								<input id="L2_data" name="L2_data" class="form-control" readonly>
+							</div>
+						</div>
+
+						<!-- Linha 2: Grupo, Form. MRP, Aglu.MRP, Dias p/ ES -->
+						<div class="row form-group">
+							<div class="col-xs-12 col-sm-12 col-md-3">
+								<label class="control-label required" for="L3_grupo">Grupo</label>
+								<div class="input-group">
+									<input type="text" id="L3_grupo" name="L3_grupo" class="form-control zoom-tdi" placeholder="Clique na lupa para pesquisar" />
+									<div id="btnGrupo" class="input-group-addon" style="cursor:pointer;" onclick="zoomGrupo(this.id.replace(/\D/g, ''));">
+										<span class="fluigicon fluigicon-zoom-in fluigicon-sm"></span>
+									</div>
+								</div>
+							</div>
+							<div class="col-xs-12 col-sm-6 col-md-3">
+								<label class="control-label">Formato MRP</label>
+								<div class="radio">
+									<label><input type="radio" name="L9_form_mrp" value="1"> Pelo Programa</label>
+								</div>
+								<div class="radio">
+									<label><input type="radio" name="L9_form_mrp" value="2"> Por OP</label>
+								</div>
+								<div class="radio">
+									<label><input type="radio" name="L9_form_mrp" value="3"> Por Necessidade</label>
+								</div>
+							</div>
+							<div class="col-xs-12 col-sm-12 col-md-3">
+								<label class="control-label" for="L10_aglu_mrp">Aglu. MRP</label>
+								<div class="input-group">
+									<input type="text" id="L10_aglu_mrp" name="L10_aglu_mrp" class="form-control zoom-tdi" placeholder="Clique na lupa para pesquisar" />
+									<div id="btnAgluMrp" class="input-group-addon" style="cursor:pointer;" onclick="zoomAgluMrp(this.id.replace(/\D/g, ''));">
+										<span class="fluigicon fluigicon-zoom-in fluigicon-sm"></span>
+									</div>
+								</div>
+							</div>
+							<div class="col-xs-12 col-sm-6 col-md-3">
+								<label class="control-label" for="L8_dias_es">Dias p/ ES</label>
+								<input id="L8_dias_es" name="L8_dias_es" class="form-control" type="number">
+							</div>
+						</div>
+
+						<div class="row form-group">
+							<div class="col-xs-12 col-sm-3 col-md-2">
+								<label class="control-label" for="L15_ponto_pedido">Ponto Pedido</label>
+								<input id="L15_ponto_pedido" name="L15_ponto_pedido" class="form-control" type="number">
+							</div>
+							<div class="col-xs-12 col-sm-3 col-md-2">
+								<label class="control-label" for="L16_seguranca">Segurança</label>
+								<input id="L16_seguranca" name="L16_seguranca" class="form-control" type="number">
+							</div>
+							<div class="col-xs-12 col-sm-12 col-md-3">
+								<label class="control-label" for="L17_form_est_seg">Form Est Seg</label>
+								<div class="input-group">
+									<input type="text" id="L17_form_est_seg" name="L17_form_est_seg" class="form-control zoom-tdi" placeholder="Clique na lupa para pesquisar" />
+									<div id="btnFormEstSeg" class="input-group-addon" style="cursor:pointer;" onclick="zoomFormEstSeg(this.id.replace(/\D/g, ''));">
+										<span class="fluigicon fluigicon-zoom-in fluigicon-sm"></span>
+									</div>
+								</div>
+							</div>
+
+							<!-- Campo L18_form_prazo -->
+							<div class="col-xs-12 col-sm-12 col-md-3">
+								<label class="control-label" for="L18_form_prazo">Form Prazo</label>
+								<div class="input-group">
+									<input type="text" id="L18_form_prazo" name="L18_form_prazo" class="form-control zoom-tdi" placeholder="Clique na lupa para pesquisar" />
+									<div id="btnFormPrazo" class="input-group-addon" style="cursor:pointer;" onclick="zoomFormPrazo(this.id.replace(/\D/g, ''));">
+										<span class="fluigicon fluigicon-zoom-in fluigicon-sm"></span>
+									</div>
+								</div>
+							</div>
+							<div class="col-xs-12 col-sm-3 col-md-2">
+								<label class="control-label" for="L19_entrega">Entrega</label>
+								<input id="L19_entrega" name="L19_entrega" class="form-control" type="number">
+							</div>
+						</div>
+
+						<div class="row form-group">
+							<div class="col-xs-12 col-sm-3 col-md-1">
+								<label class="control-label">Tipo Prazo</label>
+								<div class="radio">
+									<label><input type="radio" name="L20_tipo_prazo" id="L20_tipo_prazo1" value="H"> H -
+										Horas</label>
+								</div>
+								<div class="radio">
+									<label><input type="radio" name="L20_tipo_prazo" id="L20_tipo_prazo2" value="D"> D -
+										Dias</label>
+								</div>
+								<div class="radio">
+									<label><input type="radio" name="L20_tipo_prazo" id="L20_tipo_prazo3" value="S"> S -
+										Semanas</label>
+								</div>
+								<div class="radio">
+									<label><input type="radio" name="L20_tipo_prazo" id="L20_tipo_prazo4" value="M"> M -
+										Mês</label>
+								</div>
+								<div class="radio">
+									<label><input type="radio" name="L20_tipo_prazo" id="L20_tipo_prazo5" value="A"> A -
+										Ano</label>
+								</div>
+							</div>
+							<div class="col-xs-12 col-sm-3 col-md-2">
+								<label class="control-label" for="L21_tolerancia">Tolerância</label>
+								<input id="L21_tolerancia" name="L21_tolerancia" class="form-control" type="number">
+							</div>
+							<div class="col-xs-12 col-sm-3 col-md-2">
+								<label class="control-label" for="L22_tipo_dec_op">Tipo Dec. OP</label>
+								<div class="radio">
+									<label><input type="radio" name="L22_tipo_dec_op" id="L22_tipo_dec_op1" value="N">
+										Normal</label>
+								</div>
+								<div class="radio">
+									<label><input type="radio" name="L22_tipo_dec_op" id="L22_tipo_dec_op2" value="A"> Arred
+										5/4</label>
+								</div>
+								<div class="radio">
+									<label><input type="radio" name="L22_tipo_dec_op" id="L22_tipo_dec_op3" value="I">
+										Incrementa</label>
+								</div>
+								<div class="radio">
+									<label><input type="radio" name="L22_tipo_dec_op" id="L22_tipo_dec_op4" value="T">
+										Trunca</label>
+								</div>
+							</div>
+							<div class="col-xs-12 col-sm-3 col-md-1">
+								<label class="control-label" for="L23_entra_mrp">Entra MRP</label>
+								<div class="radio">
+									<label><input type="radio" name="L23_entra_mrp" id="L23_entra_mrpOp1" value="S"> S -
+										Sim</label>
+								</div>
+								<div class="radio">
+									<label><input type="radio" name="L23_entra_mrp" id="L23_entra_mrpOp2" value="N"> N -
+										Não</label>
+								</div>
+								<div class="radio">
+									<label><input type="radio" name="L23_entra_mrp" id="L23_entra_mrpOp3" value="E"> E -
+										Especial</label>
+								</div>
+							</div>
+							<div class="col-xs-12 col-sm-3 col-md-2">
+								<label class="control-label" for="L24_prazo_validade">Prazo Validade</label>
+								<input id="L24_prazo_validade" name="L24_prazo_validade" class="form-control" type="number">
+							</div>
+							<div class="col-xs-12 col-sm-3 col-md-2">
+								<label class="control-label" for="L25_estoque_maximo">Estoque Máximo</label>
+								<input id="L25_estoque_maximo" name="L25_estoque_maximo" class="form-control" type="number">
+							</div>
+							<div class="col-xs-12 col-sm-3 col-md-2">
+								<label class="control-label required" for="L26_atende_necessidade">Atende
+									Necessidade</label>
+								<div class="radio">
+									<label><input type="radio" name="L26_atende_necessidade" id="L26_atende_necessidadeOp1" value="C"> C - Comprando</label>
+								</div>
+								<div class="radio">
+									<label><input type="radio" name="L26_atende_necessidade" id="L26_atende_necessidadeOp2" value="P"> P - Produzindo</label>
+								</div>
+							</div>
+						</div>
+
+						<div class="row form-group">
+							<div class="col-xs-12 col-sm-6 col-md-6">
+								<label class="control-label">Apontamento por Produto</label>
+								<div class="radio">
+									<label><input type="radio" name="L7_apontamento_produto" value="S"> Sim</label>
+								</div>
+								<div class="radio">
+									<label><input type="radio" name="L7_apontamento_produto" value="N"> Não</label>
+								</div>
+							</div>
+						</div>
+
+						<div class="row form-group">
+							<div class="col-xs-12 col-sm-4 col-md-4">
+								<label class="control-label" for="L4_codigo_allix">Código ALLIX</label>
+								<input id="L4_codigo_allix" name="L4_codigo_allix" class="form-control" type="text" maxlength="15">
+							</div>
+							<div class="col-xs-12 col-sm-4 col-md-4">
+								<label class="control-label" for="L5_codigo_gemba">Código GEMBA</label>
+								<input id="L5_codigo_gemba" name="L5_codigo_gemba" class="form-control" type="text" maxlength="8">
+							</div>
+							<div class="col-xs-12 col-sm-4 col-md-4">
+								<label class="control-label" for="L6_codigo_espanha">Código Espanha</label>
+								<input id="L6_codigo_espanha" name="L6_codigo_espanha" class="form-control" type="text" maxlength="15">
+							</div>
+						</div>
+
+						<div class="row form-group">
+							<div class="col-xs-12 col-sm-12 col-md-4">
+								<label class="control-label" for="L12_tipo_rotulo">Tipo Rótulo Premix</label>
+								<div class="input-group">
+									<input type="text" id="L12_tipo_rotulo" name="L12_tipo_rotulo" class="form-control zoom-tdi" placeholder="Clique na lupa para pesquisar" />
+									<div id="btnTipoRotulo" class="input-group-addon" style="cursor:pointer;" onclick="zoomTipoRotulo(this.id.replace(/\D/g, ''));">
+										<span class="fluigicon fluigicon-zoom-in fluigicon-sm"></span>
+									</div>
+								</div>
+							</div>
+							<div class="col-xs-12 col-sm-12 col-md-4" style="display: none;">
+								<label class="control-label" for="L13_tipo_rotulo_premix">Tipo Rótulo Premix</label>
+								<div class="input-group">
+									<input type="text" id="L13_tipo_rotulo_premix" name="L13_tipo_rotulo_premix" class="form-control zoom-tdi" placeholder="Clique na lupa para pesquisar" />
+									<div id="btnTipoRotuloPremix" class="input-group-addon" style="cursor:pointer;" onclick="zoomTipoRotuloPremix(this.id.replace(/\D/g, ''));">
+										<span class="fluigicon fluigicon-zoom-in fluigicon-sm"></span>
+									</div>
+								</div>
+							</div>
+							<div class="col-xs-12 col-sm-4 col-md-4">
+								<label class="control-label required">UM. Indústria</label>
+								<div class="radio">
+									<label><input type="radio" name="L11_um_industria" value="1"> 1ª Unidade de
+										Medida</label>
+								</div>
+								<div class="radio">
+									<label><input type="radio" name="L11_um_industria" value="2"> 2ª Unidade de
+										Medida</label>
+								</div>
+							</div>
+							<div class="col-xs-12 col-sm-12 col-md-4" style="display: none;">
+								<label class="control-label" for="L14_tipo_ensaque_premix">Tipo Ensaque Premix</label>
+								<div class="input-group">
+									<input type="text" id="L14_tipo_ensaque_premix" name="L14_tipo_ensaque_premix" class="form-control zoom-tdi" placeholder="Clique na lupa para pesquisar" />
+									<div id="btnTipoEnsaquePremix" class="input-group-addon" style="cursor:pointer;" onclick="zoomTipoEnsaquePremix(this.id.replace(/\D/g, ''));">
+										<span class="fluigicon fluigicon-zoom-in fluigicon-sm"></span>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="row form-group">
+							<div class="col-xs-12 col-sm-12 col-md-2">
+								<label class="control-label required">Decisão</label>
+								<div class="radio">
+									<label>
+										<input type="radio" name="L27_decisaoOpcoes" id="L27_decisao1" value="aprovado">
+										Aprovado
+									</label>
+								</div>
+								<div class="radio">
+									<label>
+										<input type="radio" name="L27_decisaoOpcoes" id="L27_decisao2" value="ajuste">
+										Retornar para Ajuste
+									</label>
+								</div>
+							</div>
+							<div class="col-xs-12 col-sm-12 col-md-2">
+								<label class="control-label">Retorno</label>
+								<div class="radio">
+									<label>
+										<input type="radio" name="L28_retornoOpcoes" id="L28_retorno1" value="logistica">
+										Logística
+									</label>
+								</div>
+								<div class="radio">
+									<label>
+										<input type="radio" name="L28_retornoOpcoes" id="L28_retorno2" value="custos">
+										Custos
+									</label>
+								</div>
+								<div class="radio">
+									<label>
+										<input type="radio" name="L28_retornoOpcoes" id="L28_retorno3" value="contabil">
+										Contábil
+									</label>
+								</div>
+								<div class="radio">
+									<label>
+										<input type="radio" name="L28_retornoOpcoes" id="L28_retorno4" value="comex"> Comex
+									</label>
+								</div>
+								<div class="radio">
+									<label>
+										<input type="radio" name="L28_retornoOpcoes" id="L28_retorno5" value="fiscal">
+										Fiscal
+									</label>
+								</div>
+								<div class="radio">
+									<label>
+										<input type="radio" name="L28_retornoOpcoes" id="L28_retorno6" value="qualidade">
+										Qualidade
+									</label>
+								</div>
+								<div class="radio">
+									<label>
+										<input type="radio" name="L28_retornoOpcoes" id="L28_retorno7" value="tecnico">
+										Técnico
+									</label>
+								</div>
+								<div class="radio">
+									<label>
+										<input type="radio" name="L28_retornoOpcoes" id="L28_retorno8" value="comercial">
+										Comercial
+									</label>
+								</div>
+								<div class="radio">
+									<label>
+										<input type="radio" name="L28_retornoOpcoes" id="L28_retorno9" value="compras">
+										Compras
+									</label>
+								</div>
+								<div class="radio">
+									<label>
+										<input type="radio" name="L28_retornoOpcoes" id="L28_retorno10" value="solicitante">
+										Solicitante
+									</label>
+								</div>
+							</div>
+							<div class="col-xs-12 col-sm-12 col-md-8">
+								<label class="control-label required" for="L29_justificativa">Justificativa</label>
+								<textarea id="L29_justificativa" name="L29_justificativa" class="form-control"></textarea>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</form>
+	</div>
+</body>
+
+</html>
