@@ -1,0 +1,520 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<java version="1.8.0_202" class="java.beans.XMLDecoder">
+ <object class="java.util.HashMap">
+  <void method="put">
+   <string>volume</string>
+   <array class="java.lang.String" length="1">
+    <void index="0">
+     <string>Default</string>
+    </void>
+   </array>
+  </void>
+  <void method="put">
+   <string>mecanismoGrupo</string>
+   <object class="java.util.ArrayList">
+    <void method="add">
+     <object class="com.totvs.tds.ecm.foundation.ws.GroupDto">
+      <void property="groupDescription">
+       <string>AMER_VIDARA_CADPCLIENTES_FINANCEIRO</string>
+      </void>
+      <void property="groupId">
+       <string>AMER_VIDARA_CADPCLIENTES_FINANCEIRO</string>
+      </void>
+     </object>
+    </void>
+    <void method="add">
+     <object class="com.totvs.tds.ecm.foundation.ws.GroupDto">
+      <void property="groupDescription">
+       <string>AMER_VIDARA_CADPCLIENTES_SOLICITANTE</string>
+      </void>
+      <void property="groupId">
+       <string>AMER_VIDARA_CADPCLIENTES_SOLICITANTE</string>
+      </void>
+     </object>
+    </void>
+    <void method="add">
+     <object class="com.totvs.tds.ecm.foundation.ws.GroupDto">
+      <void property="groupDescription">
+       <string>AMER_VIDARA_CADPCLIENTES_TI</string>
+      </void>
+      <void property="groupId">
+       <string>AMER_VIDARA_CADPCLIENTES_TI</string>
+      </void>
+     </object>
+    </void>
+    <void method="add">
+     <object class="com.totvs.tds.ecm.foundation.ws.GroupDto">
+      <void property="groupDescription">
+       <string>AMER_VIDARA_CADPFORNECEDORES_CONTABILIADE</string>
+      </void>
+      <void property="groupId">
+       <string>AMER_VIDARA_CADPFORNECEDORES_CONTABILIADE</string>
+      </void>
+     </object>
+    </void>
+    <void method="add">
+     <object class="com.totvs.tds.ecm.foundation.ws.GroupDto">
+      <void property="groupDescription">
+       <string>AMER_VIDARA_CADPFORNECEDORES_FINANCEIRO</string>
+      </void>
+      <void property="groupId">
+       <string>AMER_VIDARA_CADPFORNECEDORES_FINANCEIRO</string>
+      </void>
+     </object>
+    </void>
+    <void method="add">
+     <object class="com.totvs.tds.ecm.foundation.ws.GroupDto">
+      <void property="groupDescription">
+       <string>AMER_VIDARA_CADPFORNECEDORES_SOLICITANTE</string>
+      </void>
+      <void property="groupId">
+       <string>AMER_VIDARA_CADPFORNECEDORES_SOLICITANTE</string>
+      </void>
+     </object>
+    </void>
+    <void method="add">
+     <object class="com.totvs.tds.ecm.foundation.ws.GroupDto">
+      <void property="groupDescription">
+       <string>AMER_VIDARA_CADPFORNECEDORES_TI</string>
+      </void>
+      <void property="groupId">
+       <string>AMER_VIDARA_CADPFORNECEDORES_TI</string>
+      </void>
+     </object>
+    </void>
+    <void method="add">
+     <object class="com.totvs.tds.ecm.foundation.ws.GroupDto">
+      <void property="groupDescription">
+       <string>AMER_VIDARA_CADPRODUTOS_COMERCIAL</string>
+      </void>
+      <void property="groupId">
+       <string>AMER_VIDARA_CADPRODUTOS_COMERCIAL</string>
+      </void>
+     </object>
+    </void>
+    <void method="add">
+     <object class="com.totvs.tds.ecm.foundation.ws.GroupDto">
+      <void property="groupDescription">
+       <string>AMER_VIDARA_CADPRODUTOS_COMEX</string>
+      </void>
+      <void property="groupId">
+       <string>AMER_VIDARA_CADPRODUTOS_COMEX</string>
+      </void>
+     </object>
+    </void>
+    <void method="add">
+     <object class="com.totvs.tds.ecm.foundation.ws.GroupDto">
+      <void property="groupDescription">
+       <string>AMER_VIDARA_CADPRODUTOS_COMPRAS</string>
+      </void>
+      <void property="groupId">
+       <string>AMER_VIDARA_CADPRODUTOS_COMPRAS</string>
+      </void>
+     </object>
+    </void>
+    <void method="add">
+     <object class="com.totvs.tds.ecm.foundation.ws.GroupDto">
+      <void property="groupDescription">
+       <string>AMER_VIDARA_CADPRODUTOS_CONTABILIDADE</string>
+      </void>
+      <void property="groupId">
+       <string>AMER_VIDARA_CADPRODUTOS_CONTABILIDADE</string>
+      </void>
+     </object>
+    </void>
+    <void method="add">
+     <object class="com.totvs.tds.ecm.foundation.ws.GroupDto">
+      <void property="groupDescription">
+       <string>AMER_VIDARA_CADPRODUTOS_CONTROLADORIA</string>
+      </void>
+      <void property="groupId">
+       <string>AMER_VIDARA_CADPRODUTOS_CONTROLADORIA</string>
+      </void>
+     </object>
+    </void>
+    <void method="add">
+     <object class="com.totvs.tds.ecm.foundation.ws.GroupDto">
+      <void property="groupDescription">
+       <string>AMER_VIDARA_CADPRODUTOS_CUSTOS</string>
+      </void>
+      <void property="groupId">
+       <string>AMER_VIDARA_CADPRODUTOS_CUSTOS</string>
+      </void>
+     </object>
+    </void>
+    <void method="add">
+     <object class="com.totvs.tds.ecm.foundation.ws.GroupDto">
+      <void property="groupDescription">
+       <string>AMER_VIDARA_CADPRODUTOS_FISCAL</string>
+      </void>
+      <void property="groupId">
+       <string>AMER_VIDARA_CADPRODUTOS_FISCAL</string>
+      </void>
+     </object>
+    </void>
+    <void method="add">
+     <object class="com.totvs.tds.ecm.foundation.ws.GroupDto">
+      <void property="groupDescription">
+       <string>AMER_VIDARA_CADPRODUTOS_LOGISTICA</string>
+      </void>
+      <void property="groupId">
+       <string>AMER_VIDARA_CADPRODUTOS_LOGISTICA</string>
+      </void>
+     </object>
+    </void>
+    <void method="add">
+     <object class="com.totvs.tds.ecm.foundation.ws.GroupDto">
+      <void property="groupDescription">
+       <string>AMER_VIDARA_CADPRODUTOS_PCP</string>
+      </void>
+      <void property="groupId">
+       <string>AMER_VIDARA_CADPRODUTOS_PCP</string>
+      </void>
+     </object>
+    </void>
+    <void method="add">
+     <object class="com.totvs.tds.ecm.foundation.ws.GroupDto">
+      <void property="groupDescription">
+       <string>AMER_VIDARA_CADPRODUTOS_PLANEJAMENTO</string>
+      </void>
+      <void property="groupId">
+       <string>AMER_VIDARA_CADPRODUTOS_PLANEJAMENTO</string>
+      </void>
+     </object>
+    </void>
+    <void method="add">
+     <object class="com.totvs.tds.ecm.foundation.ws.GroupDto">
+      <void property="groupDescription">
+       <string>AMER_VIDARA_CADPRODUTOS_QUALIDADE</string>
+      </void>
+      <void property="groupId">
+       <string>AMER_VIDARA_CADPRODUTOS_QUALIDADE</string>
+      </void>
+     </object>
+    </void>
+    <void method="add">
+     <object class="com.totvs.tds.ecm.foundation.ws.GroupDto">
+      <void property="groupDescription">
+       <string>AMER_VIDARA_CADPRODUTOS_SOLICITANTE</string>
+      </void>
+      <void property="groupId">
+       <string>AMER_VIDARA_CADPRODUTOS_SOLICITANTE</string>
+      </void>
+     </object>
+    </void>
+    <void method="add">
+     <object class="com.totvs.tds.ecm.foundation.ws.GroupDto">
+      <void property="groupDescription">
+       <string>AMER_VIDARA_CADPRODUTOS_TECNICO</string>
+      </void>
+      <void property="groupId">
+       <string>AMER_VIDARA_CADPRODUTOS_TECNICO</string>
+      </void>
+     </object>
+    </void>
+    <void method="add">
+     <object class="com.totvs.tds.ecm.foundation.ws.GroupDto">
+      <void property="groupDescription">
+       <string>AMER_VIDARA_CADPRODUTOS_TI</string>
+      </void>
+      <void property="groupId">
+       <string>AMER_VIDARA_CADPRODUTOS_TI</string>
+      </void>
+     </object>
+    </void>
+    <void method="add">
+     <object class="com.totvs.tds.ecm.foundation.ws.GroupDto">
+      <void property="groupDescription">
+       <string>AMER_VIDARA_CADPRODUTOS_VENDAS</string>
+      </void>
+      <void property="groupId">
+       <string>AMER_VIDARA_CADPRODUTOS_VENDAS</string>
+      </void>
+     </object>
+    </void>
+    <void method="add">
+     <object class="com.totvs.tds.ecm.foundation.ws.GroupDto">
+      <void property="groupDescription">
+       <string>AMER_VIDARA_CORTEWMS_TI</string>
+      </void>
+      <void property="groupId">
+       <string>AMER_VIDARA_CORTEWMS_TI</string>
+      </void>
+     </object>
+    </void>
+    <void method="add">
+     <object class="com.totvs.tds.ecm.foundation.ws.GroupDto">
+      <void property="groupDescription">
+       <string>AMER_VIDARA_KITNF_VALIDACAO</string>
+      </void>
+      <void property="groupId">
+       <string>AMER_VIDARA_KITNF_VALIDACAO</string>
+      </void>
+     </object>
+    </void>
+    <void method="add">
+     <object class="com.totvs.tds.ecm.foundation.ws.GroupDto">
+      <void property="groupDescription">
+       <string>Gestor_Solicitacao_Cadastro_Produto</string>
+      </void>
+      <void property="groupId">
+       <string>Gestor_Solicitacao_Cadastro_Produto</string>
+      </void>
+     </object>
+    </void>
+    <void method="add">
+     <object class="com.totvs.tds.ecm.foundation.ws.GroupDto">
+      <void property="groupDescription">
+       <string>tecnico</string>
+      </void>
+      <void property="groupId">
+       <string>tecnico</string>
+      </void>
+     </object>
+    </void>
+    <void method="add">
+     <object class="com.totvs.tds.ecm.foundation.ws.GroupDto">
+      <void property="groupDescription">
+       <string>ti</string>
+      </void>
+      <void property="groupId">
+       <string>ti</string>
+      </void>
+     </object>
+    </void>
+    <void method="add">
+     <object class="com.totvs.tds.ecm.foundation.ws.GroupDto">
+      <void property="groupDescription">
+       <string>Valida Informações KIT</string>
+      </void>
+      <void property="groupId">
+       <string>validaInformacoesKIT</string>
+      </void>
+     </object>
+    </void>
+   </object>
+  </void>
+  <void method="put">
+   <string>expediente</string>
+   <array class="java.lang.String" length="1">
+    <void index="0">
+     <string>Default</string>
+    </void>
+   </array>
+  </void>
+  <void method="put">
+   <string>mecanismo</string>
+   <array class="[Ljava.lang.Object;" length="10">
+    <void index="0">
+     <array class="java.lang.Object" length="2">
+      <void index="0">
+       <string>Atribuição por Associação</string>
+      </void>
+      <void index="1">
+       <string>Associado</string>
+      </void>
+     </array>
+    </void>
+    <void index="1">
+     <array class="java.lang.Object" length="2">
+      <void index="0">
+       <string>Atribuição por Campo de Formulário</string>
+      </void>
+      <void index="1">
+       <string>Campo Formulário</string>
+      </void>
+     </array>
+    </void>
+    <void index="2">
+     <array class="java.lang.Object" length="2">
+      <void index="0">
+       <string>Atribuição por Executor de Atividade</string>
+      </void>
+      <void index="1">
+       <string>Executor Atividade</string>
+      </void>
+     </array>
+    </void>
+    <void index="3">
+     <array class="java.lang.Object" length="2">
+      <void index="0">
+       <string>Atribuição por Grupo</string>
+      </void>
+      <void index="1">
+       <string>Grupo</string>
+      </void>
+     </array>
+    </void>
+    <void index="4">
+     <array class="java.lang.Object" length="2">
+      <void index="0">
+       <string>Atribuição por Grupos do Colaborador</string>
+      </void>
+      <void index="1">
+       <string>Grupos Colaborador</string>
+      </void>
+     </array>
+    </void>
+    <void index="5">
+     <array class="java.lang.Object" length="2">
+      <void index="0">
+       <string>Atribuição por Papel</string>
+      </void>
+      <void index="1">
+       <string>Papel</string>
+      </void>
+     </array>
+    </void>
+    <void index="6">
+     <array class="java.lang.Object" length="2">
+      <void index="0">
+       <string>Atribuição para um Grupo</string>
+      </void>
+      <void index="1">
+       <string>Pool Grupo</string>
+      </void>
+     </array>
+    </void>
+    <void index="7">
+     <array class="java.lang.Object" length="2">
+      <void index="0">
+       <string>Atribuição para um Papel</string>
+      </void>
+      <void index="1">
+       <string>Pool Papel</string>
+      </void>
+     </array>
+    </void>
+    <void index="8">
+     <array class="java.lang.Object" length="2">
+      <void index="0">
+       <string>Atribuição por Usuário</string>
+      </void>
+      <void index="1">
+       <string>Usuário</string>
+      </void>
+     </array>
+    </void>
+    <void index="9">
+     <array class="java.lang.Object" length="2">
+      <void index="0">
+       <string>Aprovação Corte WMS</string>
+      </void>
+      <void index="1">
+       <string>wms_aprovacao</string>
+      </void>
+     </array>
+    </void>
+   </array>
+  </void>
+  <void method="put">
+   <string>forms</string>
+   <object class="java.util.LinkedList">
+    <void method="add">
+     <object class="com.totvs.technology.ecmrestclient.cardindexpublisher.FormVO">
+      <void property="datasetName">
+       <string>FLUIGADHOC</string>
+      </void>
+      <void property="documentDescription">
+       <string>FLUIGADHOC</string>
+      </void>
+      <void property="documentId">
+       <int>3</int>
+      </void>
+     </object>
+    </void>
+    <void method="add">
+     <object class="com.totvs.technology.ecmrestclient.cardindexpublisher.FormVO">
+      <void property="datasetName">
+       <string>FLUIGADHOCPROCESS</string>
+      </void>
+      <void property="documentDescription">
+       <string>FLUIGADHOCPROCESS</string>
+      </void>
+      <void property="documentId">
+       <int>4</int>
+      </void>
+     </object>
+    </void>
+    <void method="add">
+     <object class="com.totvs.technology.ecmrestclient.cardindexpublisher.FormVO">
+      <void property="datasetName">
+       <string>DSformCadastroCliente</string>
+      </void>
+      <void property="documentDescription">
+       <string>formCadastroCliente</string>
+      </void>
+      <void property="documentId">
+       <int>5</int>
+      </void>
+     </object>
+    </void>
+    <void method="add">
+     <object class="com.totvs.technology.ecmrestclient.cardindexpublisher.FormVO">
+      <void property="datasetName">
+       <string>DSformCadastroFornecedor</string>
+      </void>
+      <void property="documentDescription">
+       <string>formCadastroFornecedor</string>
+      </void>
+      <void property="documentId">
+       <int>8</int>
+      </void>
+     </object>
+    </void>
+    <void method="add">
+     <object class="com.totvs.technology.ecmrestclient.cardindexpublisher.FormVO">
+      <void property="datasetName">
+       <string>DSKitDocumentos</string>
+      </void>
+      <void property="documentDescription">
+       <string>Kit Documentos</string>
+      </void>
+      <void property="documentId">
+       <int>10</int>
+      </void>
+     </object>
+    </void>
+    <void method="add">
+     <object class="com.totvs.technology.ecmrestclient.cardindexpublisher.FormVO">
+      <void property="datasetName">
+       <string>DSCortedosProdutos</string>
+      </void>
+      <void property="documentDescription">
+       <string>Corte dos Produtos</string>
+      </void>
+      <void property="documentId">
+       <int>11</int>
+      </void>
+     </object>
+    </void>
+    <void method="add">
+     <object class="com.totvs.technology.ecmrestclient.cardindexpublisher.FormVO">
+      <void property="datasetName">
+       <string>dsCadastroProduto</string>
+      </void>
+      <void property="documentDescription">
+       <string>wf_cadastro_de_produto</string>
+      </void>
+      <void property="documentId">
+       <int>34</int>
+      </void>
+     </object>
+    </void>
+    <void method="add">
+     <object class="com.totvs.technology.ecmrestclient.cardindexpublisher.FormVO">
+      <void property="datasetName">
+       <string>dsAprovacaoCorteWms</string>
+      </void>
+      <void property="documentDescription">
+       <string>Aprovação de Corte WMS</string>
+      </void>
+      <void property="documentId">
+       <int>342</int>
+      </void>
+     </object>
+    </void>
+   </object>
+  </void>
+ </object>
+</java>

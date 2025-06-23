@@ -1,0 +1,777 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<java version="1.8.0_202" class="java.beans.XMLDecoder">
+ <object class="java.util.HashMap">
+  <void method="put">
+   <string>volume</string>
+   <array class="java.lang.String" length="1">
+    <void index="0">
+     <string>Default</string>
+    </void>
+   </array>
+  </void>
+  <void method="put">
+   <string>mecanismoGrupo</string>
+   <object class="java.util.ArrayList">
+    <void method="add">
+     <object class="com.totvs.tds.ecm.foundation.ws.GroupDto">
+      <void property="groupDescription">
+       <string>comercial</string>
+      </void>
+      <void property="groupId">
+       <string>comercial</string>
+      </void>
+     </object>
+    </void>
+    <void method="add">
+     <object class="com.totvs.tds.ecm.foundation.ws.GroupDto">
+      <void property="groupDescription">
+       <string>comex</string>
+      </void>
+      <void property="groupId">
+       <string>comex</string>
+      </void>
+     </object>
+    </void>
+    <void method="add">
+     <object class="com.totvs.tds.ecm.foundation.ws.GroupDto">
+      <void property="groupDescription">
+       <string>compras</string>
+      </void>
+      <void property="groupId">
+       <string>compras</string>
+      </void>
+     </object>
+    </void>
+    <void method="add">
+     <object class="com.totvs.tds.ecm.foundation.ws.GroupDto">
+      <void property="groupDescription">
+       <string>contabil</string>
+      </void>
+      <void property="groupId">
+       <string>contabil</string>
+      </void>
+     </object>
+    </void>
+    <void method="add">
+     <object class="com.totvs.tds.ecm.foundation.ws.GroupDto">
+      <void property="groupDescription">
+       <string>custos</string>
+      </void>
+      <void property="groupId">
+       <string>custos</string>
+      </void>
+     </object>
+    </void>
+    <void method="add">
+     <object class="com.totvs.tds.ecm.foundation.ws.GroupDto">
+      <void property="groupDescription">
+       <string>fiscal</string>
+      </void>
+      <void property="groupId">
+       <string>fiscal</string>
+      </void>
+     </object>
+    </void>
+    <void method="add">
+     <object class="com.totvs.tds.ecm.foundation.ws.GroupDto">
+      <void property="groupDescription">
+       <string>Gestor_Solicitacao_Cadastro_Produto</string>
+      </void>
+      <void property="groupId">
+       <string>Gestor_Solicitacao_Cadastro_Produto</string>
+      </void>
+     </object>
+    </void>
+    <void method="add">
+     <object class="com.totvs.tds.ecm.foundation.ws.GroupDto">
+      <void property="groupDescription">
+       <string>logistica</string>
+      </void>
+      <void property="groupId">
+       <string>logistica</string>
+      </void>
+     </object>
+    </void>
+    <void method="add">
+     <object class="com.totvs.tds.ecm.foundation.ws.GroupDto">
+      <void property="groupDescription">
+       <string>planejamento</string>
+      </void>
+      <void property="groupId">
+       <string>planejamento</string>
+      </void>
+     </object>
+    </void>
+    <void method="add">
+     <object class="com.totvs.tds.ecm.foundation.ws.GroupDto">
+      <void property="groupDescription">
+       <string>qualidade</string>
+      </void>
+      <void property="groupId">
+       <string>qualidade</string>
+      </void>
+     </object>
+    </void>
+    <void method="add">
+     <object class="com.totvs.tds.ecm.foundation.ws.GroupDto">
+      <void property="groupDescription">
+       <string>tecnico</string>
+      </void>
+      <void property="groupId">
+       <string>tecnico</string>
+      </void>
+     </object>
+    </void>
+    <void method="add">
+     <object class="com.totvs.tds.ecm.foundation.ws.GroupDto">
+      <void property="groupDescription">
+       <string>ti</string>
+      </void>
+      <void property="groupId">
+       <string>ti</string>
+      </void>
+     </object>
+    </void>
+   </object>
+  </void>
+  <void method="put">
+   <string>expediente</string>
+   <array class="java.lang.String" length="1">
+    <void index="0">
+     <string>Default</string>
+    </void>
+   </array>
+  </void>
+  <void method="put">
+   <string>mecanismo</string>
+   <array class="[Ljava.lang.Object;" length="9">
+    <void index="0">
+     <array class="java.lang.Object" length="2">
+      <void index="0">
+       <string>Atribuição por Associação</string>
+      </void>
+      <void index="1">
+       <string>Associado</string>
+      </void>
+     </array>
+    </void>
+    <void index="1">
+     <array class="java.lang.Object" length="2">
+      <void index="0">
+       <string>Atribuição por Campo de Formulário</string>
+      </void>
+      <void index="1">
+       <string>Campo Formulário</string>
+      </void>
+     </array>
+    </void>
+    <void index="2">
+     <array class="java.lang.Object" length="2">
+      <void index="0">
+       <string>Atribuição por Executor de Atividade</string>
+      </void>
+      <void index="1">
+       <string>Executor Atividade</string>
+      </void>
+     </array>
+    </void>
+    <void index="3">
+     <array class="java.lang.Object" length="2">
+      <void index="0">
+       <string>Atribuição por Grupo</string>
+      </void>
+      <void index="1">
+       <string>Grupo</string>
+      </void>
+     </array>
+    </void>
+    <void index="4">
+     <array class="java.lang.Object" length="2">
+      <void index="0">
+       <string>Atribuição por Grupos do Colaborador</string>
+      </void>
+      <void index="1">
+       <string>Grupos Colaborador</string>
+      </void>
+     </array>
+    </void>
+    <void index="5">
+     <array class="java.lang.Object" length="2">
+      <void index="0">
+       <string>Atribuição por Papel</string>
+      </void>
+      <void index="1">
+       <string>Papel</string>
+      </void>
+     </array>
+    </void>
+    <void index="6">
+     <array class="java.lang.Object" length="2">
+      <void index="0">
+       <string>Atribuição para um Grupo</string>
+      </void>
+      <void index="1">
+       <string>Pool Grupo</string>
+      </void>
+     </array>
+    </void>
+    <void index="7">
+     <array class="java.lang.Object" length="2">
+      <void index="0">
+       <string>Atribuição para um Papel</string>
+      </void>
+      <void index="1">
+       <string>Pool Papel</string>
+      </void>
+     </array>
+    </void>
+    <void index="8">
+     <array class="java.lang.Object" length="2">
+      <void index="0">
+       <string>Atribuição por Usuário</string>
+      </void>
+      <void index="1">
+       <string>Usuário</string>
+      </void>
+     </array>
+    </void>
+   </array>
+  </void>
+  <void method="put">
+   <string>forms</string>
+   <object class="java.util.LinkedList">
+    <void method="add">
+     <object class="com.totvs.technology.ecmrestclient.cardindexpublisher.FormVO">
+      <void property="datasetName">
+       <string>FLUIGADHOC</string>
+      </void>
+      <void property="documentDescription">
+       <string>FLUIGADHOC</string>
+      </void>
+      <void property="documentId">
+       <int>3</int>
+      </void>
+     </object>
+    </void>
+    <void method="add">
+     <object class="com.totvs.technology.ecmrestclient.cardindexpublisher.FormVO">
+      <void property="datasetName">
+       <string>FLUIGADHOCPROCESS</string>
+      </void>
+      <void property="documentDescription">
+       <string>FLUIGADHOCPROCESS</string>
+      </void>
+      <void property="documentId">
+       <int>4</int>
+      </void>
+     </object>
+    </void>
+    <void method="add">
+     <object class="com.totvs.technology.ecmrestclient.cardindexpublisher.FormVO">
+      <void property="datasetName">
+       <string>DSformCadastroCliente</string>
+      </void>
+      <void property="documentDescription">
+       <string>formCadastroCliente</string>
+      </void>
+      <void property="documentId">
+       <int>5</int>
+      </void>
+     </object>
+    </void>
+    <void method="add">
+     <object class="com.totvs.technology.ecmrestclient.cardindexpublisher.FormVO">
+      <void property="datasetName">
+       <string>DSformCadastroFornecedor</string>
+      </void>
+      <void property="documentDescription">
+       <string>formCadastroFornecedor</string>
+      </void>
+      <void property="documentId">
+       <int>8</int>
+      </void>
+     </object>
+    </void>
+    <void method="add">
+     <object class="com.totvs.technology.ecmrestclient.cardindexpublisher.FormVO">
+      <void property="datasetName">
+       <string>DSKitDocumentos</string>
+      </void>
+      <void property="documentDescription">
+       <string>Kit Documentos</string>
+      </void>
+      <void property="documentId">
+       <int>10</int>
+      </void>
+     </object>
+    </void>
+    <void method="add">
+     <object class="com.totvs.technology.ecmrestclient.cardindexpublisher.FormVO">
+      <void property="datasetName">
+       <string>DSCortedosProdutos</string>
+      </void>
+      <void property="documentDescription">
+       <string>Corte dos Produtos</string>
+      </void>
+      <void property="documentId">
+       <int>11</int>
+      </void>
+     </object>
+    </void>
+    <void method="add">
+     <object class="com.totvs.technology.ecmrestclient.cardindexpublisher.FormVO">
+      <void property="datasetName">
+       <string>dsCadastroProduto</string>
+      </void>
+      <void property="documentDescription">
+       <string>wf_cadastro_de_produto</string>
+      </void>
+      <void property="documentId">
+       <int>34</int>
+      </void>
+     </object>
+    </void>
+   </object>
+  </void>
+  <void method="put">
+   <string>camposFormulario, documentoId = 34</string>
+   <array class="java.lang.String" length="145">
+    <void index="0">
+     <string>A1_dataSolicitacao</string>
+    </void>
+    <void index="1">
+     <string>A2_numSolicitacao</string>
+    </void>
+    <void index="2">
+     <string>A3_empresa</string>
+    </void>
+    <void index="3">
+     <string>A4_departamento</string>
+    </void>
+    <void index="4">
+     <string>A5_solicitante</string>
+    </void>
+    <void index="5">
+     <string>A6_email</string>
+    </void>
+    <void index="6">
+     <string>B10_armPadrao</string>
+    </void>
+    <void index="7">
+     <string>B11_centroCusto</string>
+    </void>
+    <void index="8">
+     <string>B12_rastroOpcoes</string>
+    </void>
+    <void index="9">
+     <string>B1_codProduto</string>
+    </void>
+    <void index="10">
+     <string>B2_descricao</string>
+    </void>
+    <void index="11">
+     <string>B3_catalogoProduto</string>
+    </void>
+    <void index="12">
+     <string>B4_tipo</string>
+    </void>
+    <void index="13">
+     <string>B5_unidadeMedida1</string>
+    </void>
+    <void index="14">
+     <string>B6_unidadeMedida2</string>
+    </void>
+    <void index="15">
+     <string>B7_qntdeEmbalagens</string>
+    </void>
+    <void index="16">
+     <string>B8_fatorConversao</string>
+    </void>
+    <void index="17">
+     <string>B9_pesoBruto</string>
+    </void>
+    <void index="18">
+     <string>C18_decisao</string>
+    </void>
+    <void index="19">
+     <string>C19_justificativa</string>
+    </void>
+    <void index="20">
+     <string>C1_responsavel</string>
+    </void>
+    <void index="21">
+     <string>C2_data</string>
+    </void>
+    <void index="22">
+     <string>C3_origem</string>
+    </void>
+    <void index="23">
+     <string>C4_prod_importado</string>
+    </void>
+    <void index="24">
+     <string>C5_lote_minimo</string>
+    </void>
+    <void index="25">
+     <string>C6_lote_econom</string>
+    </void>
+    <void index="26">
+     <string>D14_decisao</string>
+    </void>
+    <void index="27">
+     <string>D15_justificativa</string>
+    </void>
+    <void index="28">
+     <string>D1_responsavel</string>
+    </void>
+    <void index="29">
+     <string>D2_data</string>
+    </void>
+    <void index="30">
+     <string>D3_finalidade</string>
+    </void>
+    <void index="31">
+     <string>D4_moeda_comercial</string>
+    </void>
+    <void index="32">
+     <string>D5_margem_bruto</string>
+    </void>
+    <void index="33">
+     <string>dataSolicitacao</string>
+    </void>
+    <void index="34">
+     <string>E10_decisaoOpcoes</string>
+    </void>
+    <void index="35">
+     <string>E11_justificativa</string>
+    </void>
+    <void index="36">
+     <string>E1_responsavel</string>
+    </void>
+    <void index="37">
+     <string>E2_data</string>
+    </void>
+    <void index="38">
+     <string>E3_embalagemPremix</string>
+    </void>
+    <void index="39">
+     <string>E4_tipoEnsaque</string>
+    </void>
+    <void index="40">
+     <string>E5_clasIndProd</string>
+    </void>
+    <void index="41">
+     <string>E6_diasValidade</string>
+    </void>
+    <void index="42">
+     <string>E7_modoUso</string>
+    </void>
+    <void index="43">
+     <string>E8_especieDest</string>
+    </void>
+    <void index="44">
+     <string>E9_fotoOpcoes</string>
+    </void>
+    <void index="45">
+     <string>emailSolicitante</string>
+    </void>
+    <void index="46">
+     <string>G10_aliqIss</string>
+    </void>
+    <void index="47">
+     <string>G11_codServIss</string>
+    </void>
+    <void index="48">
+     <string>G12_cest</string>
+    </void>
+    <void index="49">
+     <string>G13_estCredIpiOpcoes</string>
+    </void>
+    <void index="50">
+     <string>G14_icmsOpcoes</string>
+    </void>
+    <void index="51">
+     <string>G15_exeServicoOpcoes</string>
+    </void>
+    <void index="52">
+     <string>G16_tipoServico</string>
+    </void>
+    <void index="53">
+     <string>G17_subtitulo</string>
+    </void>
+    <void index="54">
+     <string>G18_nbs</string>
+    </void>
+    <void index="55">
+     <string>G19_mostrarDescServ</string>
+    </void>
+    <void index="56">
+     <string>G1_responsavel</string>
+    </void>
+    <void index="57">
+     <string>G20_textDescServ</string>
+    </void>
+    <void index="58">
+     <string>G21_decisaoOpcoes</string>
+    </void>
+    <void index="59">
+     <string>G22_retornoOpcoes</string>
+    </void>
+    <void index="60">
+     <string>G23_justificativa</string>
+    </void>
+    <void index="61">
+     <string>G2_data</string>
+    </void>
+    <void index="62">
+     <string>G3_aliqIpi</string>
+    </void>
+    <void index="63">
+     <string>G4_grupoTrib</string>
+    </void>
+    <void index="64">
+     <string>G5_impostoRendaOpcoes</string>
+    </void>
+    <void index="65">
+     <string>G6_calculaInssOpcoes</string>
+    </void>
+    <void index="66">
+     <string>G7_csll</string>
+    </void>
+    <void index="67">
+     <string>G8_cofins</string>
+    </void>
+    <void index="68">
+     <string>G9_pis</string>
+    </void>
+    <void index="69">
+     <string>H10_retornoOpcoes</string>
+    </void>
+    <void index="70">
+     <string>H11_justificativa</string>
+    </void>
+    <void index="71">
+     <string>H1_responsavel</string>
+    </void>
+    <void index="72">
+     <string>H2_data</string>
+    </void>
+    <void index="73">
+     <string>H3_nomeCientif</string>
+    </void>
+    <void index="74">
+     <string>H4_despImport</string>
+    </void>
+    <void index="75">
+     <string>H5_anuente</string>
+    </void>
+    <void index="76">
+     <string>H6_descIngles</string>
+    </void>
+    <void index="77">
+     <string>H7_descLi</string>
+    </void>
+    <void index="78">
+     <string>H8_descPortg</string>
+    </void>
+    <void index="79">
+     <string>H9_decisaoOpcoes</string>
+    </void>
+    <void index="80">
+     <string>I1_responsavel</string>
+    </void>
+    <void index="81">
+     <string>I2_data</string>
+    </void>
+    <void index="82">
+     <string>I3_contaContabil</string>
+    </void>
+    <void index="83">
+     <string>I4_itemConta</string>
+    </void>
+    <void index="84">
+     <string>I5_classeValor</string>
+    </void>
+    <void index="85">
+     <string>I7_decisaoOpcoes</string>
+    </void>
+    <void index="86">
+     <string>I8_justificativa</string>
+    </void>
+    <void index="87">
+     <string>J1_responsavel</string>
+    </void>
+    <void index="88">
+     <string>J2_data</string>
+    </void>
+    <void index="89">
+     <string>J3_moeda</string>
+    </void>
+    <void index="90">
+     <string>J4_contaOrcament</string>
+    </void>
+    <void index="91">
+     <string>J5_exRiscCambOpcoes</string>
+    </void>
+    <void index="92">
+     <string>J6_varCambial</string>
+    </void>
+    <void index="93">
+     <string>J7_decisaoOpcoes</string>
+    </void>
+    <void index="94">
+     <string>J8_justificativa</string>
+    </void>
+    <void index="95">
+     <string>K10_zonaArmaz</string>
+    </void>
+    <void index="96">
+     <string>K11_servEntr</string>
+    </void>
+    <void index="97">
+     <string>K12_servTrans</string>
+    </void>
+    <void index="98">
+     <string>K13_servSaida</string>
+    </void>
+    <void index="99">
+     <string>K14_pulmaoOpcoes</string>
+    </void>
+    <void index="100">
+     <string>K15_servEmb</string>
+    </void>
+    <void index="101">
+     <string>K16_decisaoOpcoes</string>
+    </void>
+    <void index="102">
+     <string>K16_endSaida</string>
+    </void>
+    <void index="103">
+     <string>K17_justificativa</string>
+    </void>
+    <void index="104">
+     <string>K1_responsavel</string>
+    </void>
+    <void index="105">
+     <string>K2_data</string>
+    </void>
+    <void index="106">
+     <string>K3_tipoConversao</string>
+    </void>
+    <void index="107">
+     <string>K4_wmsOpcoes</string>
+    </void>
+    <void index="108">
+     <string>K5_enderecoOpcoes</string>
+    </void>
+    <void index="109">
+     <string>K6_armDriveOpcoes</string>
+    </void>
+    <void index="110">
+     <string>K7_largura</string>
+    </void>
+    <void index="111">
+     <string>K8_comprimento</string>
+    </void>
+    <void index="112">
+     <string>K9_altura</string>
+    </void>
+    <void index="113">
+     <string>L10_aglu_mrp</string>
+    </void>
+    <void index="114">
+     <string>L11_um_industria</string>
+    </void>
+    <void index="115">
+     <string>L12_tipo_rotulo</string>
+    </void>
+    <void index="116">
+     <string>L13_tipo_rotulo_premix</string>
+    </void>
+    <void index="117">
+     <string>L14_tipo_ensaque_premix</string>
+    </void>
+    <void index="118">
+     <string>L15_ponto_pedido</string>
+    </void>
+    <void index="119">
+     <string>L16_seguranca</string>
+    </void>
+    <void index="120">
+     <string>L17_form_est_seg</string>
+    </void>
+    <void index="121">
+     <string>L18_form_prazo</string>
+    </void>
+    <void index="122">
+     <string>L19_entrega</string>
+    </void>
+    <void index="123">
+     <string>L1_responsavel</string>
+    </void>
+    <void index="124">
+     <string>L20_tipo_prazo</string>
+    </void>
+    <void index="125">
+     <string>L21_tolerancia</string>
+    </void>
+    <void index="126">
+     <string>L22_tipo_dec_op</string>
+    </void>
+    <void index="127">
+     <string>L23_entra_mrp</string>
+    </void>
+    <void index="128">
+     <string>L24_prazo_validade</string>
+    </void>
+    <void index="129">
+     <string>L25_estoque_maximo</string>
+    </void>
+    <void index="130">
+     <string>L26_atende_necessidade</string>
+    </void>
+    <void index="131">
+     <string>L27_decisaoOpcoes</string>
+    </void>
+    <void index="132">
+     <string>L28_retornoOpcoes</string>
+    </void>
+    <void index="133">
+     <string>L29_justificativa</string>
+    </void>
+    <void index="134">
+     <string>L2_data</string>
+    </void>
+    <void index="135">
+     <string>L3_grupo</string>
+    </void>
+    <void index="136">
+     <string>L4_codigo_allix</string>
+    </void>
+    <void index="137">
+     <string>L5_codigo_gemba</string>
+    </void>
+    <void index="138">
+     <string>L6_codigo_espanha</string>
+    </void>
+    <void index="139">
+     <string>L7_apontamento_produto</string>
+    </void>
+    <void index="140">
+     <string>L8_dias_es</string>
+    </void>
+    <void index="141">
+     <string>L9_form_mrp</string>
+    </void>
+    <void index="142">
+     <string>matriculaSolicitante</string>
+    </void>
+    <void index="143">
+     <string>nomeSolicitante</string>
+    </void>
+    <void index="144">
+     <string>numeroSolicitacao</string>
+    </void>
+   </array>
+  </void>
+ </object>
+</java>

@@ -1,0 +1,6 @@
+{
+  "printWidth": 260,
+  "htmlWhitespaceSensitivity": "ignore",
+  "jsxBracketSameLine": true,
+  "trailingComma": "none"
+}
